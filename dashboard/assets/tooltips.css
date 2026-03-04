@@ -1,0 +1,8 @@
+/* Tooltip contextuel — show on hover */
+.tooltip-trigger .tooltip-panel {
+    display: none !important;
+}
+.tooltip-trigger:hover .tooltip-panel {
+    display: block !important;
+    pointer-events: none;
+}
