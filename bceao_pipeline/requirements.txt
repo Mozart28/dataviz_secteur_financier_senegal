@@ -1,0 +1,22 @@
+# ============================================================
+#  requirements.txt — Dépendances du pipeline BCEAO
+# ============================================================
+
+# Extraction PDF
+pdfplumber==0.11.0
+pdfminer.six==20231228
+
+# Manipulation des données
+pandas==2.2.0
+numpy==1.26.4
+openpyxl==3.1.2
+
+# Requêtes HTTP
+requests==2.31.0
+
+# MongoDB
+pymongo==4.6.1
+
+# Optionnel : OCR si PDFs scannés
+# pytesseract==0.3.10
+# Pillow==10.2.0

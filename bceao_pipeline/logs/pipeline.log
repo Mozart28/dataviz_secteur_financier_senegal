@@ -1,0 +1,234 @@
+2026-02-21 21:20:25,602 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-21 21:20:25,602 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-21 21:20:25,602 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-21 21:20:25,602 [INFO] ==================================================
+2026-02-21 21:20:25,602 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-21 21:20:25,602 [INFO] ==================================================
+2026-02-21 21:20:25,602 [INFO] [2022] Téléchargement depuis : https://www.bceao.int/sites/default/files/2024-05/Bilans%20et%20comptes%20de%20r%C3%A9sultat%20des%20banques%2C%20%C3%A9tablissements%20financiers%20et%20compagnies%20financi%C3%A8res%20de%20l%27UMOA%202022.pdf
+2026-02-21 21:20:27,710 [INFO] [2022] ✅ Téléchargé : data/raw_pdfs/bceao_bilans_2022.pdf (3.3 Mo)
+2026-02-21 21:20:29,717 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-21 21:20:29,717 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-21 21:20:29,718 [INFO] ==================================================
+2026-02-21 21:20:29,718 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-21 21:20:29,718 [INFO] ==================================================
+2026-02-21 21:20:29,718 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-21 21:20:29,866 [INFO] Nombre de pages : 369
+2026-02-21 21:20:30,001 [INFO] Section Sénégal détectée à la page 2
+2026-02-21 21:20:30,060 [WARNING] BGFI : mapping d'années non détecté, données attribuées à 2022
+2026-02-21 21:20:30,060 [INFO] Fin de la section Sénégal à la page 4
+2026-02-21 21:20:30,204 [INFO] Section Sénégal détectée à la page 7
+2026-02-21 21:20:30,226 [INFO] ✅ BDK : 0 enregistrements extraits
+2026-02-21 21:20:30,226 [INFO] Fin de la section Sénégal à la page 8
+2026-02-21 21:20:30,277 [INFO] Section Sénégal détectée à la page 9
+2026-02-21 21:20:30,817 [INFO] Fin de la section Sénégal à la page 17
+2026-02-21 21:20:44,143 [INFO] Section Sénégal détectée à la page 261
+2026-02-21 21:20:44,751 [INFO] ✅ BICIS : 0 enregistrements extraits
+2026-02-21 21:20:45,098 [INFO] ✅ CBAO : 0 enregistrements extraits
+2026-02-21 21:20:45,215 [INFO] ✅ CITIBANK : 0 enregistrements extraits
+2026-02-21 21:20:45,448 [INFO] ✅ LBA : 0 enregistrements extraits
+2026-02-21 21:20:45,566 [INFO] ✅ ECOBANK : 0 enregistrements extraits
+2026-02-21 21:20:45,685 [INFO] ✅ ORABANK : 0 enregistrements extraits
+2026-02-21 21:20:45,803 [INFO] ✅ BOA : 0 enregistrements extraits
+2026-02-21 21:20:46,376 [INFO] ✅ BSIC : 0 enregistrements extraits
+2026-02-21 21:20:46,720 [INFO] ✅ FBNBANK : 0 enregistrements extraits
+2026-02-21 21:20:46,836 [INFO] ✅ NSIA Banque : 0 enregistrements extraits
+2026-02-21 21:20:47,227 [INFO] ✅ BDK : 0 enregistrements extraits
+2026-02-21 21:20:47,453 [INFO] ✅ BGFI : 0 enregistrements extraits
+2026-02-21 21:20:47,567 [INFO] ✅ LBO : 0 enregistrements extraits
+2026-02-21 21:20:47,873 [INFO] ✅ CBI : 0 enregistrements extraits
+2026-02-21 21:20:48,326 [INFO] Fin de la section Sénégal à la page 329
+2026-02-21 21:20:50,263 [INFO] Section Sénégal détectée à la page 369
+2026-02-21 21:20:50,271 [WARNING] LBA : mapping d'années non détecté, données attribuées à 2022
+2026-02-21 21:20:50,276 [INFO] Extraction terminée : 4 enregistrements (banques × années)
+2026-02-21 21:20:50,276 [INFO] [2022] 3 banques extraites
+2026-02-21 21:20:50,276 [INFO] [2021] 1 banques extraites
+2026-02-21 21:20:50,276 [INFO] ==================================================
+2026-02-21 21:20:50,276 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-21 21:20:50,276 [INFO] ==================================================
+2026-02-21 21:20:50,276 [INFO] === Fusion des données ===
+2026-02-21 21:20:50,280 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-02-21 21:20:50,281 [ERROR] ❌ ERREUR PIPELINE : [Errno 2] No such file or directory: 'data/BASE_SENEGAL2.xlsx'
+Traceback (most recent call last):
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/pipeline.py", line 147, in run_full_pipeline
+    df = run_merge_and_clean(scraped_data)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/pipeline.py", line 96, in run_merge_and_clean
+    df = merge_all_data(EXCEL_PATH, scraped_data)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/cleaner.py", line 82, in merge_all_data
+    df_excel = load_excel_data(excel_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/cleaner.py", line 19, in load_excel_data
+    df = pd.read_excel(excel_path, sheet_name="Sheet 1")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 495, in read_excel
+    io = ExcelFile(
+         ^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1550, in __init__
+    ext = inspect_excel_format(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1402, in inspect_excel_format
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/common.py", line 882, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/BASE_SENEGAL2.xlsx'
+2026-02-21 21:24:18,734 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-21 21:24:18,734 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-21 21:24:18,734 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-21 21:24:18,734 [INFO] ==================================================
+2026-02-21 21:24:18,734 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-21 21:24:18,734 [INFO] ==================================================
+2026-02-21 21:24:18,734 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-21 21:24:18,734 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-21 21:24:18,734 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-21 21:24:18,735 [INFO] ==================================================
+2026-02-21 21:24:18,735 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-21 21:24:18,735 [INFO] ==================================================
+2026-02-21 21:24:18,735 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-21 21:24:18,870 [INFO] Nombre de pages : 369
+2026-02-21 21:24:19,006 [INFO] Section Sénégal détectée à la page 2
+2026-02-21 21:24:19,065 [WARNING] BGFI : mapping d'années non détecté, données attribuées à 2022
+2026-02-21 21:24:19,065 [INFO] Fin de la section Sénégal à la page 4
+2026-02-21 21:24:19,215 [INFO] Section Sénégal détectée à la page 7
+2026-02-21 21:24:19,238 [INFO] ✅ BDK : 0 enregistrements extraits
+2026-02-21 21:24:19,238 [INFO] Fin de la section Sénégal à la page 8
+2026-02-21 21:24:19,291 [INFO] Section Sénégal détectée à la page 9
+2026-02-21 21:24:19,834 [INFO] Fin de la section Sénégal à la page 17
+2026-02-21 21:24:33,167 [INFO] Section Sénégal détectée à la page 261
+2026-02-21 21:24:33,779 [INFO] ✅ BICIS : 0 enregistrements extraits
+2026-02-21 21:24:34,130 [INFO] ✅ CBAO : 0 enregistrements extraits
+2026-02-21 21:24:34,247 [INFO] ✅ CITIBANK : 0 enregistrements extraits
+2026-02-21 21:24:34,480 [INFO] ✅ LBA : 0 enregistrements extraits
+2026-02-21 21:24:34,599 [INFO] ✅ ECOBANK : 0 enregistrements extraits
+2026-02-21 21:24:34,719 [INFO] ✅ ORABANK : 0 enregistrements extraits
+2026-02-21 21:24:34,837 [INFO] ✅ BOA : 0 enregistrements extraits
+2026-02-21 21:24:35,416 [INFO] ✅ BSIC : 0 enregistrements extraits
+2026-02-21 21:24:35,761 [INFO] ✅ FBNBANK : 0 enregistrements extraits
+2026-02-21 21:24:35,876 [INFO] ✅ NSIA Banque : 0 enregistrements extraits
+2026-02-21 21:24:36,281 [INFO] ✅ BDK : 0 enregistrements extraits
+2026-02-21 21:24:36,511 [INFO] ✅ BGFI : 0 enregistrements extraits
+2026-02-21 21:24:36,626 [INFO] ✅ LBO : 0 enregistrements extraits
+2026-02-21 21:24:36,934 [INFO] ✅ CBI : 0 enregistrements extraits
+2026-02-21 21:24:37,391 [INFO] Fin de la section Sénégal à la page 329
+2026-02-21 21:24:39,353 [INFO] Section Sénégal détectée à la page 369
+2026-02-21 21:24:39,360 [WARNING] LBA : mapping d'années non détecté, données attribuées à 2022
+2026-02-21 21:24:40,191 [INFO] Extraction terminée : 4 enregistrements (banques × années)
+2026-02-21 21:24:40,191 [INFO] [2022] 3 banques extraites
+2026-02-21 21:24:40,191 [INFO] [2021] 1 banques extraites
+2026-02-21 21:24:40,191 [INFO] ==================================================
+2026-02-21 21:24:40,191 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-21 21:24:40,191 [INFO] ==================================================
+2026-02-21 21:24:40,191 [INFO] === Fusion des données ===
+2026-02-21 21:24:40,191 [INFO] Chargement du fichier Excel :  /Users/m12020/Downloads/BASE_SENEGAL2.xlsx
+2026-02-21 21:24:40,192 [ERROR] ❌ ERREUR PIPELINE : [Errno 2] No such file or directory: ' /Users/m12020/Downloads/BASE_SENEGAL2.xlsx'
+Traceback (most recent call last):
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/pipeline.py", line 147, in run_full_pipeline
+    df = run_merge_and_clean(scraped_data)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/pipeline.py", line 96, in run_merge_and_clean
+    df = merge_all_data(EXCEL_PATH, scraped_data)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/cleaner.py", line 82, in merge_all_data
+    df_excel = load_excel_data(excel_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/cleaner.py", line 19, in load_excel_data
+    df = pd.read_excel(excel_path, sheet_name="Sheet 1")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 495, in read_excel
+    io = ExcelFile(
+         ^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1550, in __init__
+    ext = inspect_excel_format(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1402, in inspect_excel_format
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/common.py", line 882, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: ' /Users/m12020/Downloads/BASE_SENEGAL2.xlsx'
+2026-03-03 21:46:24,306 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-03-03 21:46:24,307 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-03-03 21:46:24,307 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-03-03 21:46:24,307 [INFO] ==================================================
+2026-03-03 21:46:24,307 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-03-03 21:46:24,307 [INFO] ==================================================
+2026-03-03 21:46:24,307 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-03-03 21:46:24,307 [INFO] Téléchargements terminés : 1/1 réussis
+2026-03-03 21:46:24,307 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-03-03 21:46:24,307 [INFO] ==================================================
+2026-03-03 21:46:24,307 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-03-03 21:46:24,307 [INFO] ==================================================
+2026-03-03 21:46:24,307 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-03-03 21:46:24,447 [INFO] Nombre de pages : 369
+2026-03-03 21:46:27,486 [INFO] ✅ SGBS [2021] : 51 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ SGBS [2022] : 42 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ BICIS [2021] : 51 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ BICIS [2022] : 51 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ CBAO [2021] : 51 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ CBAO [2022] : 51 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ CDS [2021] : 51 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ CDS [2022] : 51 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ BHS [2021] : 51 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ BHS [2022] : 51 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ CITIBANK [2021] : 50 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ CITIBANK [2022] : 50 KPIs extraits
+2026-03-03 21:46:27,486 [INFO] ✅ LBA [2021] : 51 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ LBA [2022] : 51 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ BIS [2021] : 47 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ BIS [2022] : 47 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ ECOBANK [2021] : 49 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ ECOBANK [2022] : 41 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ ORABANK [2021] : 48 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ ORABANK [2022] : 48 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ BSIC [2021] : 50 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ BSIC [2022] : 49 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ BRM [2021] : 49 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ BRM [2022] : 49 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ UBA [2021] : 50 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ UBA [2022] : 50 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ FBNBANK [2021] : 50 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ FBNBANK [2022] : 50 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ BNDE [2021] : 51 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ BNDE [2022] : 51 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ BDK [2021] : 50 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ BDK [2022] : 50 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ LBO [2021] : 51 KPIs extraits
+2026-03-03 21:46:27,487 [INFO] ✅ LBO [2022] : 51 KPIs extraits
+2026-03-03 21:46:27,492 [INFO] Extraction terminée : 34 enregistrements
+2026-03-03 21:46:27,492 [INFO] [2021] 17 banques extraites
+2026-03-03 21:46:27,492 [INFO] [2022] 17 banques extraites
+2026-03-03 21:46:27,492 [INFO] ==================================================
+2026-03-03 21:46:27,492 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-03-03 21:46:27,492 [INFO] ==================================================
+2026-03-03 21:46:27,492 [INFO] === Fusion des données ===
+2026-03-03 21:46:27,493 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-03-03 21:46:27,493 [ERROR] ❌ ERREUR PIPELINE : [Errno 2] No such file or directory: 'data/BASE_SENEGAL2.xlsx'
+Traceback (most recent call last):
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/pipeline.py", line 147, in run_full_pipeline
+    df = run_merge_and_clean(scraped_data)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/pipeline.py", line 96, in run_merge_and_clean
+    df = merge_all_data(EXCEL_PATH, scraped_data)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/cleaner.py", line 58, in merge_all_data
+    df_excel = load_excel_data(excel_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/cleaner.py", line 17, in load_excel_data
+    df = pd.read_excel(excel_path, sheet_name="Sheet 1")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 495, in read_excel
+    io = ExcelFile(
+         ^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1550, in __init__
+    ext = inspect_excel_format(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1402, in inspect_excel_format
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/common.py", line 882, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/BASE_SENEGAL2.xlsx'

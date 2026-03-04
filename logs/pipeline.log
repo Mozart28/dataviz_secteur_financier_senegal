@@ -1,0 +1,1351 @@
+2026-02-21 21:29:06,441 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-21 21:29:06,441 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-21 21:29:06,442 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-21 21:29:06,442 [INFO] ==================================================
+2026-02-21 21:29:06,442 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-21 21:29:06,442 [INFO] ==================================================
+2026-02-21 21:29:06,442 [INFO] [2022] Téléchargement depuis : https://www.bceao.int/sites/default/files/2024-05/Bilans%20et%20comptes%20de%20r%C3%A9sultat%20des%20banques%2C%20%C3%A9tablissements%20financiers%20et%20compagnies%20financi%C3%A8res%20de%20l%27UMOA%202022.pdf
+2026-02-21 21:29:08,360 [INFO] [2022] ✅ Téléchargé : data/raw_pdfs/bceao_bilans_2022.pdf (3.3 Mo)
+2026-02-21 21:29:10,368 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-21 21:29:10,368 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-21 21:29:10,368 [INFO] ==================================================
+2026-02-21 21:29:10,368 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-21 21:29:10,368 [INFO] ==================================================
+2026-02-21 21:29:10,369 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-21 21:29:10,503 [INFO] Nombre de pages : 369
+2026-02-21 21:29:10,636 [INFO] Section Sénégal détectée à la page 2
+2026-02-21 21:29:10,695 [WARNING] BGFI : mapping d'années non détecté, données attribuées à 2022
+2026-02-21 21:29:10,695 [INFO] Fin de la section Sénégal à la page 4
+2026-02-21 21:29:10,844 [INFO] Section Sénégal détectée à la page 7
+2026-02-21 21:29:10,866 [INFO] ✅ BDK : 0 enregistrements extraits
+2026-02-21 21:29:10,866 [INFO] Fin de la section Sénégal à la page 8
+2026-02-21 21:29:10,918 [INFO] Section Sénégal détectée à la page 9
+2026-02-21 21:29:11,452 [INFO] Fin de la section Sénégal à la page 17
+2026-02-21 21:29:24,735 [INFO] Section Sénégal détectée à la page 261
+2026-02-21 21:29:25,339 [INFO] ✅ BICIS : 0 enregistrements extraits
+2026-02-21 21:29:25,688 [INFO] ✅ CBAO : 0 enregistrements extraits
+2026-02-21 21:29:25,803 [INFO] ✅ CITIBANK : 0 enregistrements extraits
+2026-02-21 21:29:26,034 [INFO] ✅ LBA : 0 enregistrements extraits
+2026-02-21 21:29:26,153 [INFO] ✅ ECOBANK : 0 enregistrements extraits
+2026-02-21 21:29:26,271 [INFO] ✅ ORABANK : 0 enregistrements extraits
+2026-02-21 21:29:26,388 [INFO] ✅ BOA : 0 enregistrements extraits
+2026-02-21 21:29:26,963 [INFO] ✅ BSIC : 0 enregistrements extraits
+2026-02-21 21:29:27,307 [INFO] ✅ FBNBANK : 0 enregistrements extraits
+2026-02-21 21:29:27,422 [INFO] ✅ NSIA Banque : 0 enregistrements extraits
+2026-02-21 21:29:27,814 [INFO] ✅ BDK : 0 enregistrements extraits
+2026-02-21 21:29:28,040 [INFO] ✅ BGFI : 0 enregistrements extraits
+2026-02-21 21:29:28,154 [INFO] ✅ LBO : 0 enregistrements extraits
+2026-02-21 21:29:28,462 [INFO] ✅ CBI : 0 enregistrements extraits
+2026-02-21 21:29:28,916 [INFO] Fin de la section Sénégal à la page 329
+2026-02-21 21:29:30,864 [INFO] Section Sénégal détectée à la page 369
+2026-02-21 21:29:30,871 [WARNING] LBA : mapping d'années non détecté, données attribuées à 2022
+2026-02-21 21:29:31,708 [INFO] Extraction terminée : 4 enregistrements (banques × années)
+2026-02-21 21:29:31,708 [INFO] [2022] 3 banques extraites
+2026-02-21 21:29:31,708 [INFO] [2021] 1 banques extraites
+2026-02-21 21:29:31,708 [INFO] ==================================================
+2026-02-21 21:29:31,708 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-21 21:29:31,708 [INFO] ==================================================
+2026-02-21 21:29:31,708 [INFO] === Fusion des données ===
+2026-02-21 21:29:31,708 [INFO] Chargement du fichier Excel :  /Users/m12020/Downloads/BASE_SENEGAL2.xlsx
+2026-02-21 21:29:31,709 [ERROR] ❌ ERREUR PIPELINE : [Errno 2] No such file or directory: ' /Users/m12020/Downloads/BASE_SENEGAL2.xlsx'
+Traceback (most recent call last):
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/pipeline.py", line 147, in run_full_pipeline
+    df = run_merge_and_clean(scraped_data)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/pipeline.py", line 96, in run_merge_and_clean
+    df = merge_all_data(EXCEL_PATH, scraped_data)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/cleaner.py", line 82, in merge_all_data
+    df_excel = load_excel_data(excel_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/cleaner.py", line 19, in load_excel_data
+    df = pd.read_excel(excel_path, sheet_name="Sheet 1")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 495, in read_excel
+    io = ExcelFile(
+         ^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1550, in __init__
+    ext = inspect_excel_format(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1402, in inspect_excel_format
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/common.py", line 882, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: ' /Users/m12020/Downloads/BASE_SENEGAL2.xlsx'
+2026-02-21 21:30:16,720 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-21 21:30:16,720 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-21 21:30:16,720 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-21 21:30:16,720 [INFO] ==================================================
+2026-02-21 21:30:16,720 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-21 21:30:16,720 [INFO] ==================================================
+2026-02-21 21:30:16,720 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-21 21:30:16,720 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-21 21:30:16,720 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-21 21:30:16,720 [INFO] ==================================================
+2026-02-21 21:30:16,720 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-21 21:30:16,720 [INFO] ==================================================
+2026-02-21 21:30:16,720 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-21 21:30:16,855 [INFO] Nombre de pages : 369
+2026-02-21 21:30:16,989 [INFO] Section Sénégal détectée à la page 2
+2026-02-21 21:30:17,048 [WARNING] BGFI : mapping d'années non détecté, données attribuées à 2022
+2026-02-21 21:30:17,048 [INFO] Fin de la section Sénégal à la page 4
+2026-02-21 21:30:17,196 [INFO] Section Sénégal détectée à la page 7
+2026-02-21 21:30:17,219 [INFO] ✅ BDK : 0 enregistrements extraits
+2026-02-21 21:30:17,220 [INFO] Fin de la section Sénégal à la page 8
+2026-02-21 21:30:17,272 [INFO] Section Sénégal détectée à la page 9
+2026-02-21 21:30:17,812 [INFO] Fin de la section Sénégal à la page 17
+2026-02-21 21:30:31,083 [INFO] Section Sénégal détectée à la page 261
+2026-02-21 21:30:31,692 [INFO] ✅ BICIS : 0 enregistrements extraits
+2026-02-21 21:30:32,094 [INFO] ✅ CBAO : 0 enregistrements extraits
+2026-02-21 21:30:32,212 [INFO] ✅ CITIBANK : 0 enregistrements extraits
+2026-02-21 21:30:32,445 [INFO] ✅ LBA : 0 enregistrements extraits
+2026-02-21 21:30:32,565 [INFO] ✅ ECOBANK : 0 enregistrements extraits
+2026-02-21 21:30:32,684 [INFO] ✅ ORABANK : 0 enregistrements extraits
+2026-02-21 21:30:32,802 [INFO] ✅ BOA : 0 enregistrements extraits
+2026-02-21 21:30:33,380 [INFO] ✅ BSIC : 0 enregistrements extraits
+2026-02-21 21:30:33,724 [INFO] ✅ FBNBANK : 0 enregistrements extraits
+2026-02-21 21:30:33,859 [INFO] ✅ NSIA Banque : 0 enregistrements extraits
+2026-02-21 21:30:34,260 [INFO] ✅ BDK : 0 enregistrements extraits
+2026-02-21 21:30:34,488 [INFO] ✅ BGFI : 0 enregistrements extraits
+2026-02-21 21:30:34,603 [INFO] ✅ LBO : 0 enregistrements extraits
+2026-02-21 21:30:34,911 [INFO] ✅ CBI : 0 enregistrements extraits
+2026-02-21 21:30:35,365 [INFO] Fin de la section Sénégal à la page 329
+2026-02-21 21:30:37,310 [INFO] Section Sénégal détectée à la page 369
+2026-02-21 21:30:37,317 [WARNING] LBA : mapping d'années non détecté, données attribuées à 2022
+2026-02-21 21:30:38,158 [INFO] Extraction terminée : 4 enregistrements (banques × années)
+2026-02-21 21:30:38,158 [INFO] [2022] 3 banques extraites
+2026-02-21 21:30:38,158 [INFO] [2021] 1 banques extraites
+2026-02-21 21:30:38,158 [INFO] ==================================================
+2026-02-21 21:30:38,158 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-21 21:30:38,158 [INFO] ==================================================
+2026-02-21 21:30:38,158 [INFO] === Fusion des données ===
+2026-02-21 21:30:38,158 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-02-21 21:30:38,819 [INFO] Excel chargé : 134 lignes, années [2015, 2016, 2017, 2018, 2019, 2020]
+2026-02-21 21:30:38,834 [INFO] [2022] Nettoyage terminé : 3 banques
+2026-02-21 21:30:38,847 [INFO] [2021] Nettoyage terminé : 1 banques
+2026-02-21 21:30:38,852 [INFO] Fusion terminée : 138 lignes au total
+2026-02-21 21:30:38,853 [INFO] Années disponibles : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-21 21:30:38,853 [INFO] Banques disponibles : ['BAS', 'BCIM', 'BDK', 'BGFI', 'BHS', 'BICIS', 'BIS', 'BNDE', 'BOA', 'BRM', 'BSIC', 'CBAO', 'CBI', 'CDS', 'CISA', 'CITIBANK', 'ECOBANK', 'FBNBANK', 'LBA', 'LBO', 'NSIA Banque', 'ORABANK', 'SGBS', 'UBA']
+2026-02-21 21:30:38,866 [INFO] Rapport qualité :
+2026-02-21 21:30:38,866 [INFO]   Total enregistrements : 138
+2026-02-21 21:30:38,866 [INFO]   Banques : 24
+2026-02-21 21:30:38,866 [INFO]   Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-21 21:30:38,866 [WARNING] Banques avec données manquantes (>30%) :
+2026-02-21 21:30:38,866 [WARNING]   BAS: 37.7% manquant
+2026-02-21 21:30:38,866 [WARNING]   BCIM: 50.0% manquant
+2026-02-21 21:30:38,866 [WARNING]   BDK: 41.4% manquant
+2026-02-21 21:30:38,866 [WARNING]   BGFI: 52.9% manquant
+2026-02-21 21:30:38,866 [WARNING]   BHS: 76.3% manquant
+2026-02-21 21:30:38,866 [WARNING]   BICIS: 38.9% manquant
+2026-02-21 21:30:38,866 [WARNING]   BIS: 55.6% manquant
+2026-02-21 21:30:38,866 [WARNING]   BNDE: 42.0% manquant
+2026-02-21 21:30:38,866 [WARNING]   BOA: 40.1% manquant
+2026-02-21 21:30:38,866 [WARNING]   BRM: 76.3% manquant
+2026-02-21 21:30:38,866 [WARNING]   CBAO: 38.9% manquant
+2026-02-21 21:30:38,866 [WARNING]   CBI: 36.1% manquant
+2026-02-21 21:30:38,866 [WARNING]   CDS: 39.5% manquant
+2026-02-21 21:30:38,866 [WARNING]   CISA: 41.4% manquant
+2026-02-21 21:30:38,866 [WARNING]   CITIBANK: 43.2% manquant
+2026-02-21 21:30:38,866 [WARNING]   ECOBANK: 41.4% manquant
+2026-02-21 21:30:38,866 [WARNING]   FBNBANK: 39.5% manquant
+2026-02-21 21:30:38,866 [WARNING]   LBA: 54.5% manquant
+2026-02-21 21:30:38,866 [WARNING]   LBO: 40.7% manquant
+2026-02-21 21:30:38,866 [WARNING]   ORABANK: 40.1% manquant
+2026-02-21 21:30:38,866 [WARNING]   SGBS: 40.1% manquant
+2026-02-21 21:30:38,866 [WARNING]   UBA: 42.6% manquant
+2026-02-21 21:30:38,919 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.csv
+2026-02-21 21:30:38,919 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.xlsx
+2026-02-21 21:30:38,919 [INFO] ==================================================
+2026-02-21 21:30:38,919 [INFO] ÉTAPE 4 : CHARGEMENT DANS MONGODB
+2026-02-21 21:30:38,919 [INFO] ==================================================
+2026-02-21 21:30:39,323 [INFO] ✅ Connexion MongoDB réussie : mongodb://localhost:27017/
+2026-02-21 21:30:39,569 [INFO] MongoDB : 138 insérés, 0 mis à jour, 0 erreurs
+2026-02-21 21:30:39,571 [INFO] ==================================================
+2026-02-21 21:30:39,571 [INFO] ✅ PIPELINE TERMINÉ AVEC SUCCÈS
+2026-02-21 21:30:39,571 [INFO]    Résumé MongoDB : {'inserted': 138, 'updated': 0, 'errors': 0}
+2026-02-21 21:30:39,571 [INFO] ==================================================
+2026-02-22 09:40:34,292 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-22 09:40:34,292 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-22 09:40:34,292 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-22 09:40:34,292 [INFO] ==================================================
+2026-02-22 09:40:34,292 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-22 09:40:34,292 [INFO] ==================================================
+2026-02-22 09:40:34,292 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 09:40:34,292 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-22 09:40:34,292 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 09:40:34,292 [INFO] ==================================================
+2026-02-22 09:40:34,292 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-22 09:40:34,292 [INFO] ==================================================
+2026-02-22 09:40:34,292 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 09:40:34,431 [INFO] Nombre de pages : 369
+2026-02-22 09:40:37,645 [INFO] ✅ SGBS [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ SGBS [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ BICIS [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ BICIS [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ CBAO [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ CBAO [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ CDS [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ CDS [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ BHS [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ BHS [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ CITIBANK [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ CITIBANK [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,645 [INFO] ✅ LBA [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ LBA [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ BIS [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ BIS [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ ECOBANK [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ ECOBANK [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ ORABANK [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ ORABANK [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ BSIC [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ BSIC [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ BRM [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ BRM [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ UBA [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ UBA [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ FBNBANK [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ FBNBANK [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ BNDE [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ BNDE [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ BDK [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ BDK [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ LBO [2021] : 1 KPIs extraits
+2026-02-22 09:40:37,646 [INFO] ✅ LBO [2022] : 1 KPIs extraits
+2026-02-22 09:40:37,651 [INFO] Extraction terminée : 34 enregistrements
+2026-02-22 09:40:37,651 [INFO] [2021] 17 banques extraites
+2026-02-22 09:40:37,651 [INFO] [2022] 17 banques extraites
+2026-02-22 09:40:37,651 [INFO] ==================================================
+2026-02-22 09:40:37,651 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-22 09:40:37,651 [INFO] ==================================================
+2026-02-22 09:40:37,651 [INFO] === Fusion des données ===
+2026-02-22 09:40:37,651 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-02-22 09:40:38,303 [INFO] Excel chargé : 134 lignes, années [2015, 2016, 2017, 2018, 2019, 2020]
+2026-02-22 09:40:38,315 [INFO] [2021] Nettoyage terminé : 17 banques
+2026-02-22 09:40:38,325 [INFO] [2022] Nettoyage terminé : 17 banques
+2026-02-22 09:40:38,330 [INFO] Fusion terminée : 168 lignes au total
+2026-02-22 09:40:38,330 [INFO] Années disponibles : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-22 09:40:38,331 [INFO] Banques disponibles : ['BAS', 'BCIM', 'BDK', 'BGFI', 'BHS', 'BICIS', 'BIS', 'BNDE', 'BOA', 'BRM', 'BSIC', 'CBAO', 'CBI', 'CDS', 'CISA', 'CITIBANK', 'ECOBANK', 'FBNBANK', 'LBA', 'LBO', 'NSIA Banque', 'ORABANK', 'SGBS', 'UBA']
+2026-02-22 09:40:38,343 [INFO] Rapport qualité :
+2026-02-22 09:40:38,343 [INFO]   Total enregistrements : 168
+2026-02-22 09:40:38,343 [INFO]   Banques : 24
+2026-02-22 09:40:38,343 [INFO]   Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-22 09:40:38,343 [WARNING] Banques avec données manquantes (>30%) :
+2026-02-22 09:40:38,343 [WARNING]   BAS: 37.7% manquant
+2026-02-22 09:40:38,343 [WARNING]   BCIM: 50.0% manquant
+2026-02-22 09:40:38,343 [WARNING]   BDK: 55.1% manquant
+2026-02-22 09:40:38,343 [WARNING]   BGFI: 45.1% manquant
+2026-02-22 09:40:38,343 [WARNING]   BHS: 82.0% manquant
+2026-02-22 09:40:38,343 [WARNING]   BICIS: 53.2% manquant
+2026-02-22 09:40:38,343 [WARNING]   BIS: 55.6% manquant
+2026-02-22 09:40:38,343 [WARNING]   BNDE: 55.6% manquant
+2026-02-22 09:40:38,343 [WARNING]   BOA: 40.1% manquant
+2026-02-22 09:40:38,343 [WARNING]   BRM: 82.0% manquant
+2026-02-22 09:40:38,343 [WARNING]   BSIC: 49.4% manquant
+2026-02-22 09:40:38,343 [WARNING]   CBAO: 53.2% manquant
+2026-02-22 09:40:38,343 [WARNING]   CBI: 36.1% manquant
+2026-02-22 09:40:38,343 [WARNING]   CDS: 53.7% manquant
+2026-02-22 09:40:38,343 [WARNING]   CISA: 41.4% manquant
+2026-02-22 09:40:38,343 [WARNING]   CITIBANK: 56.5% manquant
+2026-02-22 09:40:38,343 [WARNING]   ECOBANK: 55.1% manquant
+2026-02-22 09:40:38,343 [WARNING]   FBNBANK: 53.7% manquant
+2026-02-22 09:40:38,343 [WARNING]   LBA: 59.3% manquant
+2026-02-22 09:40:38,343 [WARNING]   LBO: 59.3% manquant
+2026-02-22 09:40:38,344 [WARNING]   ORABANK: 54.2% manquant
+2026-02-22 09:40:38,344 [WARNING]   SGBS: 54.2% manquant
+2026-02-22 09:40:38,344 [WARNING]   UBA: 56.0% manquant
+2026-02-22 09:40:38,405 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.csv
+2026-02-22 09:40:38,405 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.xlsx
+2026-02-22 09:40:38,406 [INFO] ==================================================
+2026-02-22 09:40:38,406 [INFO] ÉTAPE 4 : CHARGEMENT DANS MONGODB
+2026-02-22 09:40:38,406 [INFO] ==================================================
+2026-02-22 09:40:38,834 [INFO] ✅ Connexion MongoDB réussie : mongodb://localhost:27017/
+2026-02-22 09:40:38,941 [INFO] MongoDB : 31 insérés, 137 mis à jour, 0 erreurs
+2026-02-22 09:40:38,942 [INFO] ==================================================
+2026-02-22 09:40:38,942 [INFO] ✅ PIPELINE TERMINÉ AVEC SUCCÈS
+2026-02-22 09:40:38,942 [INFO]    Résumé MongoDB : {'inserted': 31, 'updated': 137, 'errors': 0}
+2026-02-22 09:40:38,942 [INFO] ==================================================
+2026-02-22 19:58:57,419 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-22 19:58:57,419 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-22 19:58:57,420 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-22 19:58:57,420 [INFO] ==================================================
+2026-02-22 19:58:57,420 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-22 19:58:57,420 [INFO] ==================================================
+2026-02-22 19:58:57,420 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 19:58:57,420 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-22 19:58:57,420 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 19:58:57,420 [INFO] ==================================================
+2026-02-22 19:58:57,420 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-22 19:58:57,420 [INFO] ==================================================
+2026-02-22 19:58:57,420 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 19:58:57,565 [INFO] Nombre de pages : 369
+2026-02-22 19:59:00,722 [INFO] ✅ SGBS [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ SGBS [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ BICIS [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ BICIS [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ CBAO [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ CBAO [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ CDS [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ CDS [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ BHS [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ BHS [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ CITIBANK [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ CITIBANK [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ LBA [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ LBA [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ BIS [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ BIS [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ ECOBANK [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ ECOBANK [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ ORABANK [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ ORABANK [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ BSIC [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,722 [INFO] ✅ BSIC [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ BRM [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ BRM [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ UBA [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ UBA [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ FBNBANK [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ FBNBANK [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ BNDE [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ BNDE [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ BDK [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ BDK [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ LBO [2021] : 2 KPIs extraits
+2026-02-22 19:59:00,723 [INFO] ✅ LBO [2022] : 2 KPIs extraits
+2026-02-22 19:59:00,728 [INFO] Extraction terminée : 34 enregistrements
+2026-02-22 19:59:00,728 [INFO] [2021] 17 banques extraites
+2026-02-22 19:59:00,728 [INFO] [2022] 17 banques extraites
+2026-02-22 19:59:00,728 [INFO] ==================================================
+2026-02-22 19:59:00,728 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-22 19:59:00,728 [INFO] ==================================================
+2026-02-22 19:59:00,728 [INFO] === Fusion des données ===
+2026-02-22 19:59:00,728 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-02-22 19:59:00,962 [INFO] Excel chargé : 134 lignes, années [2015, 2016, 2017, 2018, 2019, 2020]
+2026-02-22 19:59:00,975 [INFO] [2021] Nettoyage terminé : 17 banques
+2026-02-22 19:59:00,984 [INFO] [2022] Nettoyage terminé : 17 banques
+2026-02-22 19:59:00,989 [INFO] Fusion terminée : 168 lignes au total
+2026-02-22 19:59:00,989 [INFO] Années disponibles : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-22 19:59:00,989 [INFO] Banques disponibles : ['BAS', 'BCIM', 'BDK', 'BGFI', 'BHS', 'BICIS', 'BIS', 'BNDE', 'BOA', 'BRM', 'BSIC', 'CBAO', 'CBI', 'CDS', 'CISA', 'CITIBANK', 'ECOBANK', 'FBNBANK', 'LBA', 'LBO', 'NSIA Banque', 'ORABANK', 'SGBS', 'UBA']
+2026-02-22 19:59:01,002 [INFO] Rapport qualité :
+2026-02-22 19:59:01,002 [INFO]   Total enregistrements : 168
+2026-02-22 19:59:01,002 [INFO]   Banques : 24
+2026-02-22 19:59:01,002 [INFO]   Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-22 19:59:01,002 [WARNING] Banques avec données manquantes (>30%) :
+2026-02-22 19:59:01,002 [WARNING]   BAS: 37.7% manquant
+2026-02-22 19:59:01,002 [WARNING]   BCIM: 50.0% manquant
+2026-02-22 19:59:01,003 [WARNING]   BDK: 54.2% manquant
+2026-02-22 19:59:01,003 [WARNING]   BGFI: 45.1% manquant
+2026-02-22 19:59:01,003 [WARNING]   BHS: 81.0% manquant
+2026-02-22 19:59:01,003 [WARNING]   BICIS: 52.3% manquant
+2026-02-22 19:59:01,003 [WARNING]   BIS: 54.6% manquant
+2026-02-22 19:59:01,003 [WARNING]   BNDE: 54.6% manquant
+2026-02-22 19:59:01,003 [WARNING]   BOA: 40.1% manquant
+2026-02-22 19:59:01,003 [WARNING]   BRM: 81.0% manquant
+2026-02-22 19:59:01,003 [WARNING]   BSIC: 48.1% manquant
+2026-02-22 19:59:01,003 [WARNING]   CBAO: 52.3% manquant
+2026-02-22 19:59:01,003 [WARNING]   CBI: 36.1% manquant
+2026-02-22 19:59:01,003 [WARNING]   CDS: 52.8% manquant
+2026-02-22 19:59:01,003 [WARNING]   CISA: 41.4% manquant
+2026-02-22 19:59:01,003 [WARNING]   CITIBANK: 55.6% manquant
+2026-02-22 19:59:01,003 [WARNING]   ECOBANK: 54.2% manquant
+2026-02-22 19:59:01,003 [WARNING]   FBNBANK: 52.8% manquant
+2026-02-22 19:59:01,003 [WARNING]   LBA: 58.3% manquant
+2026-02-22 19:59:01,003 [WARNING]   LBO: 58.0% manquant
+2026-02-22 19:59:01,003 [WARNING]   ORABANK: 53.2% manquant
+2026-02-22 19:59:01,003 [WARNING]   SGBS: 53.2% manquant
+2026-02-22 19:59:01,003 [WARNING]   UBA: 55.1% manquant
+2026-02-22 19:59:01,064 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.csv
+2026-02-22 19:59:01,064 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.xlsx
+2026-02-22 19:59:01,064 [INFO] ==================================================
+2026-02-22 19:59:01,064 [INFO] ÉTAPE 4 : CHARGEMENT DANS MONGODB
+2026-02-22 19:59:01,064 [INFO] ==================================================
+2026-02-22 19:59:01,292 [INFO] ✅ Connexion MongoDB réussie : mongodb://localhost:27017/
+2026-02-22 19:59:01,526 [INFO] MongoDB : 168 insérés, 0 mis à jour, 0 erreurs
+2026-02-22 19:59:01,528 [INFO] ==================================================
+2026-02-22 19:59:01,528 [INFO] ✅ PIPELINE TERMINÉ AVEC SUCCÈS
+2026-02-22 19:59:01,528 [INFO]    Résumé MongoDB : {'inserted': 168, 'updated': 0, 'errors': 0}
+2026-02-22 19:59:01,532 [INFO] ==================================================
+2026-02-22 20:21:53,969 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-22 20:21:53,969 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-22 20:21:53,969 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-22 20:21:53,969 [INFO] ==================================================
+2026-02-22 20:21:53,969 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-22 20:21:53,969 [INFO] ==================================================
+2026-02-22 20:21:53,969 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 20:21:53,969 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-22 20:21:53,969 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 20:21:53,970 [INFO] ==================================================
+2026-02-22 20:21:53,970 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-22 20:21:53,970 [INFO] ==================================================
+2026-02-22 20:21:53,970 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 20:21:54,106 [INFO] Nombre de pages : 369
+2026-02-22 20:21:57,013 [INFO] ✅ SGBS [2021] : 19 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ SGBS [2022] : 19 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ BICIS [2021] : 20 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ BICIS [2022] : 20 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ CBAO [2021] : 20 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ CBAO [2022] : 20 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ CDS [2021] : 20 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ CDS [2022] : 20 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ BHS [2021] : 20 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ BHS [2022] : 20 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ CITIBANK [2021] : 19 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ CITIBANK [2022] : 19 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ LBA [2021] : 20 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ LBA [2022] : 20 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ BIS [2021] : 17 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ BIS [2022] : 17 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ ECOBANK [2021] : 17 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ ECOBANK [2022] : 17 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ ORABANK [2021] : 18 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ ORABANK [2022] : 18 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ BSIC [2021] : 19 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ BSIC [2022] : 19 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ BRM [2021] : 18 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ BRM [2022] : 18 KPIs
+2026-02-22 20:21:57,013 [INFO] ✅ UBA [2021] : 19 KPIs
+2026-02-22 20:21:57,014 [INFO] ✅ UBA [2022] : 19 KPIs
+2026-02-22 20:21:57,014 [INFO] ✅ FBNBANK [2021] : 20 KPIs
+2026-02-22 20:21:57,014 [INFO] ✅ FBNBANK [2022] : 20 KPIs
+2026-02-22 20:21:57,014 [INFO] ✅ BNDE [2021] : 20 KPIs
+2026-02-22 20:21:57,014 [INFO] ✅ BNDE [2022] : 20 KPIs
+2026-02-22 20:21:57,014 [INFO] ✅ BDK [2021] : 20 KPIs
+2026-02-22 20:21:57,014 [INFO] ✅ BDK [2022] : 20 KPIs
+2026-02-22 20:21:57,014 [INFO] ✅ LBO [2021] : 20 KPIs
+2026-02-22 20:21:57,014 [INFO] ✅ LBO [2022] : 20 KPIs
+2026-02-22 20:21:57,018 [INFO] Extraction terminée : 34 enregistrements
+2026-02-22 20:21:57,019 [INFO] [2021] 17 banques extraites
+2026-02-22 20:21:57,019 [INFO] [2022] 17 banques extraites
+2026-02-22 20:21:57,019 [INFO] ==================================================
+2026-02-22 20:21:57,019 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-22 20:21:57,019 [INFO] ==================================================
+2026-02-22 20:21:57,019 [INFO] === Fusion des données ===
+2026-02-22 20:21:57,019 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-02-22 20:21:57,206 [INFO] Excel chargé : 134 lignes, années [2015, 2016, 2017, 2018, 2019, 2020]
+2026-02-22 20:21:57,220 [INFO] [2021] Nettoyage terminé : 17 banques
+2026-02-22 20:21:57,229 [INFO] [2022] Nettoyage terminé : 17 banques
+2026-02-22 20:21:57,235 [INFO] Fusion terminée : 168 lignes au total
+2026-02-22 20:21:57,235 [INFO] Années disponibles : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-22 20:21:57,235 [INFO] Banques disponibles : ['BAS', 'BCIM', 'BDK', 'BGFI', 'BHS', 'BICIS', 'BIS', 'BNDE', 'BOA', 'BRM', 'BSIC', 'CBAO', 'CBI', 'CDS', 'CISA', 'CITIBANK', 'ECOBANK', 'FBNBANK', 'LBA', 'LBO', 'NSIA Banque', 'ORABANK', 'SGBS', 'UBA']
+2026-02-22 20:21:57,248 [INFO] Rapport qualité :
+2026-02-22 20:21:57,248 [INFO]   Total enregistrements : 168
+2026-02-22 20:21:57,248 [INFO]   Banques : 24
+2026-02-22 20:21:57,248 [INFO]   Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-22 20:21:57,248 [WARNING] Banques avec données manquantes (>30%) :
+2026-02-22 20:21:57,248 [WARNING]   BAS: 37.7% manquant
+2026-02-22 20:21:57,248 [WARNING]   BCIM: 50.0% manquant
+2026-02-22 20:21:57,248 [WARNING]   BDK: 46.3% manquant
+2026-02-22 20:21:57,248 [WARNING]   BGFI: 45.1% manquant
+2026-02-22 20:21:57,248 [WARNING]   BHS: 72.5% manquant
+2026-02-22 20:21:57,248 [WARNING]   BICIS: 44.9% manquant
+2026-02-22 20:21:57,248 [WARNING]   BIS: 49.5% manquant
+2026-02-22 20:21:57,248 [WARNING]   BNDE: 46.8% manquant
+2026-02-22 20:21:57,248 [WARNING]   BOA: 40.1% manquant
+2026-02-22 20:21:57,248 [WARNING]   BRM: 73.5% manquant
+2026-02-22 20:21:57,248 [WARNING]   BSIC: 39.5% manquant
+2026-02-22 20:21:57,248 [WARNING]   CBAO: 44.9% manquant
+2026-02-22 20:21:57,248 [WARNING]   CBI: 36.1% manquant
+2026-02-22 20:21:57,248 [WARNING]   CDS: 44.4% manquant
+2026-02-22 20:21:57,248 [WARNING]   CISA: 41.4% manquant
+2026-02-22 20:21:57,248 [WARNING]   CITIBANK: 48.1% manquant
+2026-02-22 20:21:57,248 [WARNING]   ECOBANK: 48.1% manquant
+2026-02-22 20:21:57,248 [WARNING]   FBNBANK: 44.4% manquant
+2026-02-22 20:21:57,248 [WARNING]   LBA: 50.0% manquant
+2026-02-22 20:21:57,248 [WARNING]   LBO: 46.9% manquant
+2026-02-22 20:21:57,248 [WARNING]   ORABANK: 46.8% manquant
+2026-02-22 20:21:57,248 [WARNING]   SGBS: 46.3% manquant
+2026-02-22 20:21:57,248 [WARNING]   UBA: 47.7% manquant
+2026-02-22 20:21:57,310 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.csv
+2026-02-22 20:21:57,310 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.xlsx
+2026-02-22 20:21:57,311 [INFO] ==================================================
+2026-02-22 20:21:57,311 [INFO] ÉTAPE 4 : CHARGEMENT DANS MONGODB
+2026-02-22 20:21:57,311 [INFO] ==================================================
+2026-02-22 20:21:57,562 [INFO] ✅ Connexion MongoDB réussie : mongodb://localhost:27017/
+2026-02-22 20:21:57,638 [INFO] MongoDB : 0 insérés, 168 mis à jour, 0 erreurs
+2026-02-22 20:21:57,638 [INFO] ==================================================
+2026-02-22 20:21:57,638 [INFO] ✅ PIPELINE TERMINÉ AVEC SUCCÈS
+2026-02-22 20:21:57,638 [INFO]    Résumé MongoDB : {'inserted': 0, 'updated': 168, 'errors': 0}
+2026-02-22 20:21:57,638 [INFO] ==================================================
+2026-02-22 21:37:22,838 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-22 21:37:22,838 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-22 21:37:22,839 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-22 21:37:22,839 [INFO] ==================================================
+2026-02-22 21:37:22,839 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-22 21:37:22,839 [INFO] ==================================================
+2026-02-22 21:37:22,839 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 21:37:22,839 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-22 21:37:22,839 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 21:37:22,839 [INFO] ==================================================
+2026-02-22 21:37:22,839 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-22 21:37:22,839 [INFO] ==================================================
+2026-02-22 21:37:22,839 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 21:37:22,979 [INFO] Nombre de pages : 369
+2026-02-22 21:37:26,037 [INFO] ✅ SGBS [2021] : 49 KPIs extraits
+2026-02-22 21:37:26,037 [INFO] ✅ SGBS [2022] : 40 KPIs extraits
+2026-02-22 21:37:26,037 [INFO] ✅ BICIS [2021] : 49 KPIs extraits
+2026-02-22 21:37:26,037 [INFO] ✅ BICIS [2022] : 49 KPIs extraits
+2026-02-22 21:37:26,037 [INFO] ✅ CBAO [2021] : 49 KPIs extraits
+2026-02-22 21:37:26,037 [INFO] ✅ CBAO [2022] : 49 KPIs extraits
+2026-02-22 21:37:26,037 [INFO] ✅ CDS [2021] : 49 KPIs extraits
+2026-02-22 21:37:26,037 [INFO] ✅ CDS [2022] : 49 KPIs extraits
+2026-02-22 21:37:26,037 [INFO] ✅ BHS [2021] : 49 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ BHS [2022] : 49 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ CITIBANK [2021] : 48 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ CITIBANK [2022] : 48 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ LBA [2021] : 49 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ LBA [2022] : 49 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ BIS [2021] : 45 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ BIS [2022] : 45 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ ECOBANK [2021] : 47 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ ECOBANK [2022] : 39 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ ORABANK [2021] : 46 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ ORABANK [2022] : 46 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ BSIC [2021] : 48 KPIs extraits
+2026-02-22 21:37:26,041 [INFO] ✅ BSIC [2022] : 47 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ BRM [2021] : 47 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ BRM [2022] : 47 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ UBA [2021] : 48 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ UBA [2022] : 48 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ FBNBANK [2021] : 48 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ FBNBANK [2022] : 48 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ BNDE [2021] : 49 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ BNDE [2022] : 49 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ BDK [2021] : 48 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ BDK [2022] : 48 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ LBO [2021] : 49 KPIs extraits
+2026-02-22 21:37:26,042 [INFO] ✅ LBO [2022] : 49 KPIs extraits
+2026-02-22 21:37:26,047 [INFO] Extraction terminée : 34 enregistrements
+2026-02-22 21:37:26,047 [INFO] [2021] 17 banques extraites
+2026-02-22 21:37:26,047 [INFO] [2022] 17 banques extraites
+2026-02-22 21:37:26,048 [INFO] ==================================================
+2026-02-22 21:37:26,048 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-22 21:37:26,048 [INFO] ==================================================
+2026-02-22 21:37:26,048 [INFO] === Fusion des données ===
+2026-02-22 21:37:26,048 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-02-22 21:37:26,279 [INFO] Excel chargé : 134 lignes, années [2015, 2016, 2017, 2018, 2019, 2020]
+2026-02-22 21:37:26,292 [INFO] [2021] Nettoyage terminé : 17 banques
+2026-02-22 21:37:26,354 [INFO] [2022] Nettoyage terminé : 17 banques
+2026-02-22 21:37:26,365 [INFO] Fusion terminée : 168 lignes au total
+2026-02-22 21:37:26,365 [INFO] Années disponibles : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-22 21:37:26,365 [INFO] Banques disponibles : ['BAS', 'BCIM', 'BDK', 'BGFI', 'BHS', 'BICIS', 'BIS', 'BNDE', 'BOA', 'BRM', 'BSIC', 'CBAO', 'CBI', 'CDS', 'CISA', 'CITIBANK', 'ECOBANK', 'FBNBANK', 'LBA', 'LBO', 'NSIA Banque', 'ORABANK', 'SGBS', 'UBA']
+2026-02-22 21:37:26,379 [INFO] Rapport qualité :
+2026-02-22 21:37:26,379 [INFO]   Total enregistrements : 168
+2026-02-22 21:37:26,379 [INFO]   Banques : 24
+2026-02-22 21:37:26,379 [INFO]   Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-22 21:37:26,379 [WARNING] Banques avec données manquantes (>30%) :
+2026-02-22 21:37:26,380 [WARNING]   BAS: 37.7% manquant
+2026-02-22 21:37:26,380 [WARNING]   BCIM: 50.0% manquant
+2026-02-22 21:37:26,380 [WARNING]   BDK: 56.0% manquant
+2026-02-22 21:37:26,380 [WARNING]   BGFI: 45.1% manquant
+2026-02-22 21:37:26,380 [WARNING]   BHS: 83.1% manquant
+2026-02-22 21:37:26,380 [WARNING]   BICIS: 54.2% manquant
+2026-02-22 21:37:26,380 [WARNING]   BIS: 56.5% manquant
+2026-02-22 21:37:26,380 [WARNING]   BNDE: 56.5% manquant
+2026-02-22 21:37:26,380 [WARNING]   BOA: 40.1% manquant
+2026-02-22 21:37:26,380 [WARNING]   BRM: 83.1% manquant
+2026-02-22 21:37:26,380 [WARNING]   BSIC: 50.6% manquant
+2026-02-22 21:37:26,380 [WARNING]   CBAO: 54.2% manquant
+2026-02-22 21:37:26,380 [WARNING]   CBI: 36.1% manquant
+2026-02-22 21:37:26,380 [WARNING]   CDS: 54.6% manquant
+2026-02-22 21:37:26,380 [WARNING]   CISA: 41.4% manquant
+2026-02-22 21:37:26,380 [WARNING]   CITIBANK: 57.4% manquant
+2026-02-22 21:37:26,380 [WARNING]   ECOBANK: 56.0% manquant
+2026-02-22 21:37:26,380 [WARNING]   FBNBANK: 54.6% manquant
+2026-02-22 21:37:26,380 [WARNING]   LBA: 60.2% manquant
+2026-02-22 21:37:26,380 [WARNING]   LBO: 60.5% manquant
+2026-02-22 21:37:26,380 [WARNING]   ORABANK: 55.1% manquant
+2026-02-22 21:37:26,380 [WARNING]   SGBS: 55.1% manquant
+2026-02-22 21:37:26,380 [WARNING]   UBA: 56.9% manquant
+2026-02-22 21:37:26,445 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.csv
+2026-02-22 21:37:26,445 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.xlsx
+2026-02-22 21:37:26,445 [INFO] ==================================================
+2026-02-22 21:37:26,445 [INFO] ÉTAPE 4 : CHARGEMENT DANS MONGODB
+2026-02-22 21:37:26,445 [INFO] ==================================================
+2026-02-22 21:37:26,702 [INFO] ✅ Connexion MongoDB réussie : mongodb://localhost:27017/
+2026-02-22 21:37:26,932 [INFO] MongoDB : 168 insérés, 0 mis à jour, 0 erreurs
+2026-02-22 21:37:26,933 [INFO] ==================================================
+2026-02-22 21:37:26,933 [INFO] ✅ PIPELINE TERMINÉ AVEC SUCCÈS
+2026-02-22 21:37:26,933 [INFO]    Résumé MongoDB : {'inserted': 168, 'updated': 0, 'errors': 0}
+2026-02-22 21:37:26,933 [INFO] ==================================================
+2026-02-22 21:53:38,371 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-22 21:53:38,372 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-22 21:53:38,372 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-22 21:53:38,372 [INFO] ==================================================
+2026-02-22 21:53:38,372 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-22 21:53:38,372 [INFO] ==================================================
+2026-02-22 21:53:38,372 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 21:53:38,372 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-22 21:53:38,372 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 21:53:38,372 [INFO] ==================================================
+2026-02-22 21:53:38,372 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-22 21:53:38,372 [INFO] ==================================================
+2026-02-22 21:53:38,372 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-22 21:53:38,508 [INFO] Nombre de pages : 369
+2026-02-22 21:53:41,607 [INFO] ✅ SGBS [2021] : 49 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ SGBS [2022] : 40 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ BICIS [2021] : 49 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ BICIS [2022] : 49 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ CBAO [2021] : 49 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ CBAO [2022] : 49 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ CDS [2021] : 49 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ CDS [2022] : 49 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ BHS [2021] : 49 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ BHS [2022] : 49 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ CITIBANK [2021] : 48 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ CITIBANK [2022] : 48 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ LBA [2021] : 49 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ LBA [2022] : 49 KPIs extraits
+2026-02-22 21:53:41,607 [INFO] ✅ BIS [2021] : 45 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ BIS [2022] : 45 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ ECOBANK [2021] : 47 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ ECOBANK [2022] : 39 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ ORABANK [2021] : 46 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ ORABANK [2022] : 46 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ BSIC [2021] : 48 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ BSIC [2022] : 47 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ BRM [2021] : 47 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ BRM [2022] : 47 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ UBA [2021] : 48 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ UBA [2022] : 48 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ FBNBANK [2021] : 48 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ FBNBANK [2022] : 48 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ BNDE [2021] : 49 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ BNDE [2022] : 49 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ BDK [2021] : 48 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ BDK [2022] : 48 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ LBO [2021] : 49 KPIs extraits
+2026-02-22 21:53:41,608 [INFO] ✅ LBO [2022] : 49 KPIs extraits
+2026-02-22 21:53:41,613 [INFO] Extraction terminée : 34 enregistrements
+2026-02-22 21:53:41,613 [INFO] [2021] 17 banques extraites
+2026-02-22 21:53:41,613 [INFO] [2022] 17 banques extraites
+2026-02-22 21:53:41,613 [INFO] ==================================================
+2026-02-22 21:53:41,613 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-22 21:53:41,613 [INFO] ==================================================
+2026-02-22 21:53:41,614 [INFO] === Fusion des données ===
+2026-02-22 21:53:41,614 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-02-22 21:53:41,798 [INFO] Excel chargé : 134 lignes, années [2015, 2016, 2017, 2018, 2019, 2020]
+2026-02-22 21:53:41,813 [INFO] [2021] Nettoyage terminé : 17 banques
+2026-02-22 21:53:41,824 [INFO] [2022] Nettoyage terminé : 17 banques
+2026-02-22 21:53:41,830 [INFO] Fusion terminée : 168 lignes au total
+2026-02-22 21:53:41,830 [INFO] Années disponibles : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-22 21:53:41,831 [INFO] Banques disponibles : ['BAS', 'BCIM', 'BDK', 'BGFI', 'BHS', 'BICIS', 'BIS', 'BNDE', 'BOA', 'BRM', 'BSIC', 'CBAO', 'CBI', 'CDS', 'CISA', 'CITIBANK', 'ECOBANK', 'FBNBANK', 'LBA', 'LBO', 'NSIA Banque', 'ORABANK', 'SGBS', 'UBA']
+2026-02-22 21:53:41,843 [INFO] Rapport qualité :
+2026-02-22 21:53:41,843 [INFO]   Total enregistrements : 168
+2026-02-22 21:53:41,843 [INFO]   Banques : 24
+2026-02-22 21:53:41,843 [INFO]   Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-22 21:53:41,843 [WARNING] Banques avec données manquantes (>30%) :
+2026-02-22 21:53:41,843 [WARNING]   BAS: 37.7% manquant
+2026-02-22 21:53:41,843 [WARNING]   BCIM: 50.0% manquant
+2026-02-22 21:53:41,843 [WARNING]   BDK: 56.0% manquant
+2026-02-22 21:53:41,843 [WARNING]   BGFI: 45.1% manquant
+2026-02-22 21:53:41,843 [WARNING]   BHS: 83.1% manquant
+2026-02-22 21:53:41,843 [WARNING]   BICIS: 54.2% manquant
+2026-02-22 21:53:41,843 [WARNING]   BIS: 56.5% manquant
+2026-02-22 21:53:41,843 [WARNING]   BNDE: 56.5% manquant
+2026-02-22 21:53:41,843 [WARNING]   BOA: 40.1% manquant
+2026-02-22 21:53:41,843 [WARNING]   BRM: 83.1% manquant
+2026-02-22 21:53:41,843 [WARNING]   BSIC: 50.6% manquant
+2026-02-22 21:53:41,843 [WARNING]   CBAO: 54.2% manquant
+2026-02-22 21:53:41,843 [WARNING]   CBI: 36.1% manquant
+2026-02-22 21:53:41,843 [WARNING]   CDS: 54.6% manquant
+2026-02-22 21:53:41,843 [WARNING]   CISA: 41.4% manquant
+2026-02-22 21:53:41,843 [WARNING]   CITIBANK: 57.4% manquant
+2026-02-22 21:53:41,843 [WARNING]   ECOBANK: 56.0% manquant
+2026-02-22 21:53:41,843 [WARNING]   FBNBANK: 54.6% manquant
+2026-02-22 21:53:41,843 [WARNING]   LBA: 60.2% manquant
+2026-02-22 21:53:41,843 [WARNING]   LBO: 60.5% manquant
+2026-02-22 21:53:41,843 [WARNING]   ORABANK: 55.1% manquant
+2026-02-22 21:53:41,844 [WARNING]   SGBS: 55.1% manquant
+2026-02-22 21:53:41,844 [WARNING]   UBA: 56.9% manquant
+2026-02-22 21:53:41,904 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.csv
+2026-02-22 21:53:41,904 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.xlsx
+2026-02-22 21:53:41,904 [INFO] ==================================================
+2026-02-22 21:53:41,904 [INFO] ÉTAPE 4 : CHARGEMENT DANS MONGODB
+2026-02-22 21:53:41,904 [INFO] ==================================================
+2026-02-22 21:53:42,139 [INFO] ✅ Connexion MongoDB réussie : mongodb://localhost:27017/
+2026-02-22 21:53:42,379 [INFO] MongoDB : 168 insérés, 0 mis à jour, 0 erreurs
+2026-02-22 21:53:42,379 [INFO] ==================================================
+2026-02-22 21:53:42,380 [INFO] ✅ PIPELINE TERMINÉ AVEC SUCCÈS
+2026-02-22 21:53:42,380 [INFO]    Résumé MongoDB : {'inserted': 168, 'updated': 0, 'errors': 0}
+2026-02-22 21:53:42,380 [INFO] ==================================================
+2026-02-23 05:37:38,164 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-23 05:37:38,164 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-23 05:37:38,164 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-23 05:37:38,164 [INFO] ==================================================
+2026-02-23 05:37:38,164 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-23 05:37:38,164 [INFO] ==================================================
+2026-02-23 05:37:38,164 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 05:37:38,164 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-23 05:37:38,164 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 05:37:38,164 [INFO] ==================================================
+2026-02-23 05:37:38,165 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-23 05:37:38,165 [INFO] ==================================================
+2026-02-23 05:37:38,165 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 05:37:38,304 [INFO] Nombre de pages : 369
+2026-02-23 05:37:41,376 [INFO] ✅ SGBS [2021] : 49 KPIs extraits
+2026-02-23 05:37:41,376 [INFO] ✅ SGBS [2022] : 40 KPIs extraits
+2026-02-23 05:37:41,376 [INFO] ✅ BICIS [2021] : 49 KPIs extraits
+2026-02-23 05:37:41,376 [INFO] ✅ BICIS [2022] : 49 KPIs extraits
+2026-02-23 05:37:41,376 [INFO] ✅ CBAO [2021] : 49 KPIs extraits
+2026-02-23 05:37:41,376 [INFO] ✅ CBAO [2022] : 49 KPIs extraits
+2026-02-23 05:37:41,376 [INFO] ✅ CDS [2021] : 49 KPIs extraits
+2026-02-23 05:37:41,376 [INFO] ✅ CDS [2022] : 49 KPIs extraits
+2026-02-23 05:37:41,376 [INFO] ✅ BHS [2021] : 49 KPIs extraits
+2026-02-23 05:37:41,376 [INFO] ✅ BHS [2022] : 49 KPIs extraits
+2026-02-23 05:37:41,376 [INFO] ✅ CITIBANK [2021] : 48 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ CITIBANK [2022] : 48 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ LBA [2021] : 49 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ LBA [2022] : 49 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ BIS [2021] : 45 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ BIS [2022] : 45 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ ECOBANK [2021] : 47 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ ECOBANK [2022] : 39 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ ORABANK [2021] : 46 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ ORABANK [2022] : 46 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ BSIC [2021] : 48 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ BSIC [2022] : 47 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ BRM [2021] : 47 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ BRM [2022] : 47 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ UBA [2021] : 48 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ UBA [2022] : 48 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ FBNBANK [2021] : 48 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ FBNBANK [2022] : 48 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ BNDE [2021] : 49 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ BNDE [2022] : 49 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ BDK [2021] : 48 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ BDK [2022] : 48 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ LBO [2021] : 49 KPIs extraits
+2026-02-23 05:37:41,377 [INFO] ✅ LBO [2022] : 49 KPIs extraits
+2026-02-23 05:37:41,382 [INFO] Extraction terminée : 34 enregistrements
+2026-02-23 05:37:41,382 [INFO] [2021] 17 banques extraites
+2026-02-23 05:37:41,382 [INFO] [2022] 17 banques extraites
+2026-02-23 05:37:41,382 [INFO] ==================================================
+2026-02-23 05:37:41,383 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-23 05:37:41,383 [INFO] ==================================================
+2026-02-23 05:37:41,383 [INFO] === Fusion des données ===
+2026-02-23 05:37:41,383 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-02-23 05:37:41,564 [INFO] Excel chargé : 134 lignes, années [2015, 2016, 2017, 2018, 2019, 2020]
+2026-02-23 05:37:41,578 [INFO] [2021] Nettoyage terminé : 17 banques
+2026-02-23 05:37:41,588 [INFO] [2022] Nettoyage terminé : 17 banques
+2026-02-23 05:37:41,597 [INFO] Fusion terminée : 168 lignes au total
+2026-02-23 05:37:41,597 [INFO] Années disponibles : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-23 05:37:41,598 [INFO] Banques disponibles : ['BAS', 'BCIM', 'BDK', 'BGFI', 'BHS', 'BICIS', 'BIS', 'BNDE', 'BOA', 'BRM', 'BSIC', 'CBAO', 'CBI', 'CDS', 'CISA', 'CITIBANK', 'ECOBANK', 'FBNBANK', 'LBA', 'LBO', 'NSIA Banque', 'ORABANK', 'SGBS', 'UBA']
+2026-02-23 05:37:41,610 [INFO] Rapport qualité :
+2026-02-23 05:37:41,610 [INFO]   Total enregistrements : 168
+2026-02-23 05:37:41,610 [INFO]   Banques : 24
+2026-02-23 05:37:41,611 [INFO]   Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-23 05:37:41,611 [WARNING] Banques avec données manquantes (>30%) :
+2026-02-23 05:37:41,611 [WARNING]   BAS: 37.7% manquant
+2026-02-23 05:37:41,611 [WARNING]   BCIM: 50.0% manquant
+2026-02-23 05:37:41,611 [WARNING]   BDK: 56.0% manquant
+2026-02-23 05:37:41,611 [WARNING]   BGFI: 45.1% manquant
+2026-02-23 05:37:41,611 [WARNING]   BHS: 83.1% manquant
+2026-02-23 05:37:41,611 [WARNING]   BICIS: 54.2% manquant
+2026-02-23 05:37:41,611 [WARNING]   BIS: 56.5% manquant
+2026-02-23 05:37:41,611 [WARNING]   BNDE: 56.5% manquant
+2026-02-23 05:37:41,611 [WARNING]   BOA: 40.1% manquant
+2026-02-23 05:37:41,611 [WARNING]   BRM: 83.1% manquant
+2026-02-23 05:37:41,611 [WARNING]   BSIC: 50.6% manquant
+2026-02-23 05:37:41,611 [WARNING]   CBAO: 54.2% manquant
+2026-02-23 05:37:41,611 [WARNING]   CBI: 36.1% manquant
+2026-02-23 05:37:41,611 [WARNING]   CDS: 54.6% manquant
+2026-02-23 05:37:41,611 [WARNING]   CISA: 41.4% manquant
+2026-02-23 05:37:41,611 [WARNING]   CITIBANK: 57.4% manquant
+2026-02-23 05:37:41,611 [WARNING]   ECOBANK: 56.0% manquant
+2026-02-23 05:37:41,611 [WARNING]   FBNBANK: 54.6% manquant
+2026-02-23 05:37:41,611 [WARNING]   LBA: 60.2% manquant
+2026-02-23 05:37:41,611 [WARNING]   LBO: 60.5% manquant
+2026-02-23 05:37:41,611 [WARNING]   ORABANK: 55.1% manquant
+2026-02-23 05:37:41,611 [WARNING]   SGBS: 55.1% manquant
+2026-02-23 05:37:41,611 [WARNING]   UBA: 56.9% manquant
+2026-02-23 05:37:41,672 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.csv
+2026-02-23 05:37:41,672 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.xlsx
+2026-02-23 05:37:41,672 [INFO] ==================================================
+2026-02-23 05:37:41,672 [INFO] ÉTAPE 4 : CHARGEMENT DANS MONGODB
+2026-02-23 05:37:41,672 [INFO] ==================================================
+2026-02-23 05:37:41,905 [INFO] ✅ Connexion MongoDB réussie : mongodb://localhost:27017/
+2026-02-23 05:37:42,103 [INFO] MongoDB : 168 insérés, 0 mis à jour, 0 erreurs
+2026-02-23 05:37:42,104 [INFO] ==================================================
+2026-02-23 05:37:42,104 [INFO] ✅ PIPELINE TERMINÉ AVEC SUCCÈS
+2026-02-23 05:37:42,104 [INFO]    Résumé MongoDB : {'inserted': 168, 'updated': 0, 'errors': 0}
+2026-02-23 05:37:42,104 [INFO] ==================================================
+2026-02-23 05:46:00,648 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-23 05:46:00,649 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-23 05:46:00,649 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-23 05:46:00,649 [INFO] ==================================================
+2026-02-23 05:46:00,649 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-23 05:46:00,649 [INFO] ==================================================
+2026-02-23 05:46:00,649 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 05:46:00,649 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-23 05:46:00,649 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 05:46:00,649 [INFO] ==================================================
+2026-02-23 05:46:00,649 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-23 05:46:00,649 [INFO] ==================================================
+2026-02-23 05:46:00,649 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 05:46:00,784 [INFO] Nombre de pages : 369
+2026-02-23 05:46:03,846 [INFO] ✅ SGBS [2021] : 49 KPIs extraits
+2026-02-23 05:46:03,846 [INFO] ✅ SGBS [2022] : 40 KPIs extraits
+2026-02-23 05:46:03,846 [INFO] ✅ BICIS [2021] : 49 KPIs extraits
+2026-02-23 05:46:03,846 [INFO] ✅ BICIS [2022] : 49 KPIs extraits
+2026-02-23 05:46:03,846 [INFO] ✅ CBAO [2021] : 49 KPIs extraits
+2026-02-23 05:46:03,846 [INFO] ✅ CBAO [2022] : 49 KPIs extraits
+2026-02-23 05:46:03,846 [INFO] ✅ CDS [2021] : 49 KPIs extraits
+2026-02-23 05:46:03,846 [INFO] ✅ CDS [2022] : 49 KPIs extraits
+2026-02-23 05:46:03,846 [INFO] ✅ BHS [2021] : 49 KPIs extraits
+2026-02-23 05:46:03,846 [INFO] ✅ BHS [2022] : 49 KPIs extraits
+2026-02-23 05:46:03,846 [INFO] ✅ CITIBANK [2021] : 48 KPIs extraits
+2026-02-23 05:46:03,846 [INFO] ✅ CITIBANK [2022] : 48 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ LBA [2021] : 49 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ LBA [2022] : 49 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ BIS [2021] : 45 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ BIS [2022] : 45 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ ECOBANK [2021] : 47 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ ECOBANK [2022] : 39 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ ORABANK [2021] : 46 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ ORABANK [2022] : 46 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ BSIC [2021] : 48 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ BSIC [2022] : 47 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ BRM [2021] : 47 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ BRM [2022] : 47 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ UBA [2021] : 48 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ UBA [2022] : 48 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ FBNBANK [2021] : 48 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ FBNBANK [2022] : 48 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ BNDE [2021] : 49 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ BNDE [2022] : 49 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ BDK [2021] : 48 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ BDK [2022] : 48 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ LBO [2021] : 49 KPIs extraits
+2026-02-23 05:46:03,847 [INFO] ✅ LBO [2022] : 49 KPIs extraits
+2026-02-23 05:46:03,852 [INFO] Extraction terminée : 34 enregistrements
+2026-02-23 05:46:03,852 [INFO] [2021] 17 banques extraites
+2026-02-23 05:46:03,852 [INFO] [2022] 17 banques extraites
+2026-02-23 05:46:03,852 [INFO] ==================================================
+2026-02-23 05:46:03,852 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-23 05:46:03,852 [INFO] ==================================================
+2026-02-23 05:46:03,852 [INFO] === Fusion des données ===
+2026-02-23 05:46:03,852 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-02-23 05:46:04,038 [INFO] Excel chargé : 134 lignes, années [2015, 2016, 2017, 2018, 2019, 2020]
+2026-02-23 05:46:04,053 [INFO] [2021] Nettoyage terminé : 17 banques
+2026-02-23 05:46:04,063 [INFO] [2022] Nettoyage terminé : 17 banques
+2026-02-23 05:46:04,070 [INFO] Fusion terminée : 168 lignes au total
+2026-02-23 05:46:04,071 [INFO] Années disponibles : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-23 05:46:04,071 [INFO] Banques disponibles : ['BAS', 'BCIM', 'BDK', 'BGFI', 'BHS', 'BICIS', 'BIS', 'BNDE', 'BOA', 'BRM', 'BSIC', 'CBAO', 'CBI', 'CDS', 'CISA', 'CITIBANK', 'ECOBANK', 'FBNBANK', 'LBA', 'LBO', 'NSIA Banque', 'ORABANK', 'SGBS', 'UBA']
+2026-02-23 05:46:04,084 [INFO] Rapport qualité :
+2026-02-23 05:46:04,084 [INFO]   Total enregistrements : 168
+2026-02-23 05:46:04,084 [INFO]   Banques : 24
+2026-02-23 05:46:04,084 [INFO]   Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-23 05:46:04,084 [WARNING] Banques avec données manquantes (>30%) :
+2026-02-23 05:46:04,084 [WARNING]   BAS: 37.7% manquant
+2026-02-23 05:46:04,084 [WARNING]   BCIM: 50.0% manquant
+2026-02-23 05:46:04,084 [WARNING]   BDK: 38.4% manquant
+2026-02-23 05:46:04,084 [WARNING]   BGFI: 45.1% manquant
+2026-02-23 05:46:04,084 [WARNING]   BHS: 61.9% manquant
+2026-02-23 05:46:04,084 [WARNING]   BICIS: 35.6% manquant
+2026-02-23 05:46:04,084 [WARNING]   BIS: 43.5% manquant
+2026-02-23 05:46:04,084 [WARNING]   BNDE: 38.0% manquant
+2026-02-23 05:46:04,084 [WARNING]   BOA: 40.1% manquant
+2026-02-23 05:46:04,084 [WARNING]   BRM: 64.0% manquant
+2026-02-23 05:46:04,084 [WARNING]   CBAO: 37.0% manquant
+2026-02-23 05:46:04,084 [WARNING]   CBI: 36.1% manquant
+2026-02-23 05:46:04,084 [WARNING]   CDS: 36.1% manquant
+2026-02-23 05:46:04,084 [WARNING]   CISA: 41.4% manquant
+2026-02-23 05:46:04,084 [WARNING]   CITIBANK: 40.3% manquant
+2026-02-23 05:46:04,084 [WARNING]   ECOBANK: 40.3% manquant
+2026-02-23 05:46:04,084 [WARNING]   FBNBANK: 37.0% manquant
+2026-02-23 05:46:04,084 [WARNING]   LBA: 41.7% manquant
+2026-02-23 05:46:04,084 [WARNING]   LBO: 35.8% manquant
+2026-02-23 05:46:04,084 [WARNING]   ORABANK: 41.2% manquant
+2026-02-23 05:46:04,084 [WARNING]   SGBS: 37.5% manquant
+2026-02-23 05:46:04,084 [WARNING]   UBA: 39.4% manquant
+2026-02-23 05:46:04,146 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.csv
+2026-02-23 05:46:04,146 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.xlsx
+2026-02-23 05:46:04,147 [INFO] ==================================================
+2026-02-23 05:46:04,147 [INFO] ÉTAPE 4 : CHARGEMENT DANS MONGODB
+2026-02-23 05:46:04,147 [INFO] ==================================================
+2026-02-23 05:46:04,374 [INFO] ✅ Connexion MongoDB réussie : mongodb://localhost:27017/
+2026-02-23 05:46:04,590 [INFO] MongoDB : 168 insérés, 0 mis à jour, 0 erreurs
+2026-02-23 05:46:04,591 [INFO] ==================================================
+2026-02-23 05:46:04,591 [INFO] ✅ PIPELINE TERMINÉ AVEC SUCCÈS
+2026-02-23 05:46:04,591 [INFO]    Résumé MongoDB : {'inserted': 168, 'updated': 0, 'errors': 0}
+2026-02-23 05:46:04,591 [INFO] ==================================================
+2026-02-23 05:55:51,557 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-23 05:55:51,557 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-23 05:55:51,557 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-23 05:55:51,557 [INFO] ==================================================
+2026-02-23 05:55:51,557 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-23 05:55:51,557 [INFO] ==================================================
+2026-02-23 05:55:51,557 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 05:55:51,557 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-23 05:55:51,557 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 05:55:51,557 [INFO] ==================================================
+2026-02-23 05:55:51,557 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-23 05:55:51,557 [INFO] ==================================================
+2026-02-23 05:55:51,557 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 05:55:51,692 [INFO] Nombre de pages : 369
+2026-02-23 05:55:54,762 [INFO] ✅ SGBS [2021] : 49 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ SGBS [2022] : 40 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ BICIS [2021] : 49 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ BICIS [2022] : 49 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ CBAO [2021] : 49 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ CBAO [2022] : 49 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ CDS [2021] : 49 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ CDS [2022] : 49 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ BHS [2021] : 49 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ BHS [2022] : 49 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ CITIBANK [2021] : 48 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ CITIBANK [2022] : 48 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ LBA [2021] : 49 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ LBA [2022] : 49 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ BIS [2021] : 45 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ BIS [2022] : 45 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ ECOBANK [2021] : 47 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ ECOBANK [2022] : 39 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ ORABANK [2021] : 46 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ ORABANK [2022] : 46 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ BSIC [2021] : 48 KPIs extraits
+2026-02-23 05:55:54,762 [INFO] ✅ BSIC [2022] : 47 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ BRM [2021] : 47 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ BRM [2022] : 47 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ UBA [2021] : 48 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ UBA [2022] : 48 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ FBNBANK [2021] : 48 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ FBNBANK [2022] : 48 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ BNDE [2021] : 49 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ BNDE [2022] : 49 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ BDK [2021] : 48 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ BDK [2022] : 48 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ LBO [2021] : 49 KPIs extraits
+2026-02-23 05:55:54,763 [INFO] ✅ LBO [2022] : 49 KPIs extraits
+2026-02-23 05:55:54,768 [INFO] Extraction terminée : 34 enregistrements
+2026-02-23 05:55:54,768 [INFO] [2021] 17 banques extraites
+2026-02-23 05:55:54,768 [INFO] [2022] 17 banques extraites
+2026-02-23 05:55:54,768 [INFO] ==================================================
+2026-02-23 05:55:54,768 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-23 05:55:54,768 [INFO] ==================================================
+2026-02-23 05:55:54,768 [INFO] === Fusion des données ===
+2026-02-23 05:55:54,768 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-02-23 05:55:54,950 [INFO] Excel chargé : 134 lignes, années [2015, 2016, 2017, 2018, 2019, 2020]
+2026-02-23 05:55:54,954 [INFO] [2021] Nettoyage terminé : 17 banques, 49 KPIs
+2026-02-23 05:55:54,958 [INFO] [2022] Nettoyage terminé : 17 banques, 49 KPIs
+2026-02-23 05:55:54,968 [INFO] Fusion terminée : 168 lignes, 60 colonnes
+2026-02-23 05:55:54,968 [INFO]   dont 31 colonnes Excel + 29 nouvelles colonnes PDF
+2026-02-23 05:55:54,968 [INFO] Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-23 05:55:54,968 [INFO] Banques : ['BAS', 'BCIM', 'BDK', 'BGFI', 'BHS', 'BICIS', 'BIS', 'BNDE', 'BOA', 'BRM', 'BSIC', 'CBAO', 'CBI', 'CDS', 'CISA', 'CITIBANK', 'ECOBANK', 'FBNBANK', 'LBA', 'LBO', 'NSIA Banque', 'ORABANK', 'SGBS', 'UBA']
+2026-02-23 05:55:54,984 [INFO] Rapport qualité :
+2026-02-23 05:55:54,984 [INFO]   Total enregistrements : 168
+2026-02-23 05:55:54,984 [INFO]   Banques : 24
+2026-02-23 05:55:54,984 [INFO]   Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-23 05:55:54,984 [WARNING] Banques avec données manquantes (>30%) :
+2026-02-23 05:55:54,984 [WARNING]   BAS: 69.9% manquant
+2026-02-23 05:55:54,984 [WARNING]   BCIM: 75.9% manquant
+2026-02-23 05:55:54,984 [WARNING]   BDK: 57.4% manquant
+2026-02-23 05:55:54,984 [WARNING]   BGFI: 73.5% manquant
+2026-02-23 05:55:54,984 [WARNING]   BHS: 66.8% manquant
+2026-02-23 05:55:54,984 [WARNING]   BICIS: 56.0% manquant
+2026-02-23 05:55:54,984 [WARNING]   BIS: 58.9% manquant
+2026-02-23 05:55:54,984 [WARNING]   BNDE: 57.1% manquant
+2026-02-23 05:55:54,984 [WARNING]   BOA: 71.1% manquant
+2026-02-23 05:55:54,984 [WARNING]   BRM: 67.9% manquant
+2026-02-23 05:55:54,984 [WARNING]   BSIC: 47.9% manquant
+2026-02-23 05:55:54,985 [WARNING]   CBAO: 56.0% manquant
+2026-02-23 05:55:54,985 [WARNING]   CBI: 69.2% manquant
+2026-02-23 05:55:54,985 [WARNING]   CDS: 56.2% manquant
+2026-02-23 05:55:54,985 [WARNING]   CISA: 71.7% manquant
+2026-02-23 05:55:54,985 [WARNING]   CITIBANK: 58.0% manquant
+2026-02-23 05:55:54,985 [WARNING]   ECOBANK: 59.6% manquant
+2026-02-23 05:55:54,985 [WARNING]   FBNBANK: 56.7% manquant
+2026-02-23 05:55:54,985 [WARNING]   LBA: 58.9% manquant
+2026-02-23 05:55:54,985 [WARNING]   LBO: 51.8% manquant
+2026-02-23 05:55:54,985 [WARNING]   NSIA Banque: 61.2% manquant
+2026-02-23 05:55:54,985 [WARNING]   ORABANK: 57.8% manquant
+2026-02-23 05:55:54,985 [WARNING]   SGBS: 58.5% manquant
+2026-02-23 05:55:54,985 [WARNING]   UBA: 57.8% manquant
+2026-02-23 05:55:55,089 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.csv
+2026-02-23 05:55:55,089 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.xlsx
+2026-02-23 05:55:55,089 [INFO] ==================================================
+2026-02-23 05:55:55,089 [INFO] ÉTAPE 4 : CHARGEMENT DANS MONGODB
+2026-02-23 05:55:55,089 [INFO] ==================================================
+2026-02-23 05:55:55,366 [INFO] ✅ Connexion MongoDB réussie : mongodb://localhost:27017/
+2026-02-23 05:55:55,399 [ERROR] Erreur lors de l'insertion de BAS/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,400 [ERROR] Erreur lors de l'insertion de BAS/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,401 [ERROR] Erreur lors de l'insertion de BAS/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,401 [ERROR] Erreur lors de l'insertion de BAS/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,401 [ERROR] Erreur lors de l'insertion de BAS/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,402 [ERROR] Erreur lors de l'insertion de BAS/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,402 [ERROR] Erreur lors de l'insertion de BCIM/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,403 [ERROR] Erreur lors de l'insertion de BCIM/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,403 [ERROR] Erreur lors de l'insertion de BCIM/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,403 [ERROR] Erreur lors de l'insertion de BCIM/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,404 [ERROR] Erreur lors de l'insertion de BCIM/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,404 [ERROR] Erreur lors de l'insertion de BCIM/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,405 [ERROR] Erreur lors de l'insertion de BDK/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,405 [ERROR] Erreur lors de l'insertion de BDK/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,407 [ERROR] Erreur lors de l'insertion de BDK/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,407 [ERROR] Erreur lors de l'insertion de BDK/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,408 [ERROR] Erreur lors de l'insertion de BDK/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,408 [ERROR] Erreur lors de l'insertion de BDK/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,409 [ERROR] Erreur lors de l'insertion de BDK/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,409 [ERROR] Erreur lors de l'insertion de BDK/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,410 [ERROR] Erreur lors de l'insertion de BGFI/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,410 [ERROR] Erreur lors de l'insertion de BGFI/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,411 [ERROR] Erreur lors de l'insertion de BGFI/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,411 [ERROR] Erreur lors de l'insertion de BGFI/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,411 [ERROR] Erreur lors de l'insertion de BGFI/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,412 [ERROR] Erreur lors de l'insertion de BGFI/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,412 [ERROR] Erreur lors de l'insertion de BHS/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,413 [ERROR] Erreur lors de l'insertion de BHS/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,413 [ERROR] Erreur lors de l'insertion de BHS/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,413 [ERROR] Erreur lors de l'insertion de BHS/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,414 [ERROR] Erreur lors de l'insertion de BHS/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,414 [ERROR] Erreur lors de l'insertion de BHS/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,415 [ERROR] Erreur lors de l'insertion de BHS/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,416 [ERROR] Erreur lors de l'insertion de BICIS/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,416 [ERROR] Erreur lors de l'insertion de BICIS/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,417 [ERROR] Erreur lors de l'insertion de BICIS/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,417 [ERROR] Erreur lors de l'insertion de BICIS/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,418 [ERROR] Erreur lors de l'insertion de BICIS/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,418 [ERROR] Erreur lors de l'insertion de BICIS/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,419 [ERROR] Erreur lors de l'insertion de BICIS/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,419 [ERROR] Erreur lors de l'insertion de BICIS/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,420 [ERROR] Erreur lors de l'insertion de BIS/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,420 [ERROR] Erreur lors de l'insertion de BIS/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,421 [ERROR] Erreur lors de l'insertion de BIS/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,421 [ERROR] Erreur lors de l'insertion de BIS/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,421 [ERROR] Erreur lors de l'insertion de BIS/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,422 [ERROR] Erreur lors de l'insertion de BIS/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,424 [ERROR] Erreur lors de l'insertion de BIS/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,425 [ERROR] Erreur lors de l'insertion de BIS/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,425 [ERROR] Erreur lors de l'insertion de BNDE/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,426 [ERROR] Erreur lors de l'insertion de BNDE/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,426 [ERROR] Erreur lors de l'insertion de BNDE/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,427 [ERROR] Erreur lors de l'insertion de BNDE/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,427 [ERROR] Erreur lors de l'insertion de BNDE/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,428 [ERROR] Erreur lors de l'insertion de BNDE/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,428 [ERROR] Erreur lors de l'insertion de BNDE/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,428 [ERROR] Erreur lors de l'insertion de BNDE/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,429 [ERROR] Erreur lors de l'insertion de BOA/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,430 [ERROR] Erreur lors de l'insertion de BOA/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,430 [ERROR] Erreur lors de l'insertion de BOA/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,431 [ERROR] Erreur lors de l'insertion de BOA/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,431 [ERROR] Erreur lors de l'insertion de BOA/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,431 [ERROR] Erreur lors de l'insertion de BOA/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,432 [ERROR] Erreur lors de l'insertion de BRM/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,432 [ERROR] Erreur lors de l'insertion de BRM/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,433 [ERROR] Erreur lors de l'insertion de BRM/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,433 [ERROR] Erreur lors de l'insertion de BRM/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,433 [ERROR] Erreur lors de l'insertion de BRM/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,434 [ERROR] Erreur lors de l'insertion de BRM/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,434 [ERROR] Erreur lors de l'insertion de BRM/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,435 [ERROR] Erreur lors de l'insertion de BSIC/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,435 [ERROR] Erreur lors de l'insertion de BSIC/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,436 [ERROR] Erreur lors de l'insertion de BSIC/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,436 [ERROR] Erreur lors de l'insertion de BSIC/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,437 [ERROR] Erreur lors de l'insertion de BSIC/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,438 [ERROR] Erreur lors de l'insertion de BSIC/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,439 [ERROR] Erreur lors de l'insertion de CBAO/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,439 [ERROR] Erreur lors de l'insertion de CBAO/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,439 [ERROR] Erreur lors de l'insertion de CBAO/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,440 [ERROR] Erreur lors de l'insertion de CBAO/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,440 [ERROR] Erreur lors de l'insertion de CBAO/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,441 [ERROR] Erreur lors de l'insertion de CBAO/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,441 [ERROR] Erreur lors de l'insertion de CBAO/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,441 [ERROR] Erreur lors de l'insertion de CBAO/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,442 [ERROR] Erreur lors de l'insertion de CBI/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,442 [ERROR] Erreur lors de l'insertion de CBI/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,443 [ERROR] Erreur lors de l'insertion de CBI/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,443 [ERROR] Erreur lors de l'insertion de CBI/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,443 [ERROR] Erreur lors de l'insertion de CDS/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,444 [ERROR] Erreur lors de l'insertion de CDS/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,444 [ERROR] Erreur lors de l'insertion de CDS/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,445 [ERROR] Erreur lors de l'insertion de CDS/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,445 [ERROR] Erreur lors de l'insertion de CDS/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,446 [ERROR] Erreur lors de l'insertion de CDS/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,447 [ERROR] Erreur lors de l'insertion de CDS/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,447 [ERROR] Erreur lors de l'insertion de CDS/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,448 [ERROR] Erreur lors de l'insertion de CISA/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,448 [ERROR] Erreur lors de l'insertion de CISA/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,448 [ERROR] Erreur lors de l'insertion de CISA/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,449 [ERROR] Erreur lors de l'insertion de CISA/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,449 [ERROR] Erreur lors de l'insertion de CISA/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,450 [ERROR] Erreur lors de l'insertion de CISA/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,450 [ERROR] Erreur lors de l'insertion de CITIBANK/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,450 [ERROR] Erreur lors de l'insertion de CITIBANK/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,451 [ERROR] Erreur lors de l'insertion de CITIBANK/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,451 [ERROR] Erreur lors de l'insertion de CITIBANK/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,452 [ERROR] Erreur lors de l'insertion de CITIBANK/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,452 [ERROR] Erreur lors de l'insertion de CITIBANK/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,452 [ERROR] Erreur lors de l'insertion de CITIBANK/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,453 [ERROR] Erreur lors de l'insertion de CITIBANK/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,454 [ERROR] Erreur lors de l'insertion de ECOBANK/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,455 [ERROR] Erreur lors de l'insertion de ECOBANK/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,456 [ERROR] Erreur lors de l'insertion de ECOBANK/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,456 [ERROR] Erreur lors de l'insertion de ECOBANK/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,457 [ERROR] Erreur lors de l'insertion de ECOBANK/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,457 [ERROR] Erreur lors de l'insertion de ECOBANK/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,457 [ERROR] Erreur lors de l'insertion de ECOBANK/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,458 [ERROR] Erreur lors de l'insertion de ECOBANK/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,458 [ERROR] Erreur lors de l'insertion de FBNBANK/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,459 [ERROR] Erreur lors de l'insertion de FBNBANK/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,459 [ERROR] Erreur lors de l'insertion de FBNBANK/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,459 [ERROR] Erreur lors de l'insertion de FBNBANK/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,460 [ERROR] Erreur lors de l'insertion de FBNBANK/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,460 [ERROR] Erreur lors de l'insertion de FBNBANK/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,461 [ERROR] Erreur lors de l'insertion de FBNBANK/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,461 [ERROR] Erreur lors de l'insertion de FBNBANK/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,462 [ERROR] Erreur lors de l'insertion de LBA/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,462 [ERROR] Erreur lors de l'insertion de LBA/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,462 [ERROR] Erreur lors de l'insertion de LBA/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,463 [ERROR] Erreur lors de l'insertion de LBA/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,463 [ERROR] Erreur lors de l'insertion de LBA/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,464 [ERROR] Erreur lors de l'insertion de LBA/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,464 [ERROR] Erreur lors de l'insertion de LBA/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,464 [ERROR] Erreur lors de l'insertion de LBA/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,465 [ERROR] Erreur lors de l'insertion de LBO/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,465 [ERROR] Erreur lors de l'insertion de LBO/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,466 [ERROR] Erreur lors de l'insertion de LBO/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,466 [ERROR] Erreur lors de l'insertion de LBO/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,467 [ERROR] Erreur lors de l'insertion de LBO/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,467 [ERROR] Erreur lors de l'insertion de LBO/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,468 [ERROR] Erreur lors de l'insertion de NSIA Banque/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,468 [ERROR] Erreur lors de l'insertion de NSIA Banque/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,469 [ERROR] Erreur lors de l'insertion de NSIA Banque/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,470 [ERROR] Erreur lors de l'insertion de NSIA Banque/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,470 [ERROR] Erreur lors de l'insertion de ORABANK/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,471 [ERROR] Erreur lors de l'insertion de ORABANK/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,471 [ERROR] Erreur lors de l'insertion de ORABANK/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,472 [ERROR] Erreur lors de l'insertion de ORABANK/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,472 [ERROR] Erreur lors de l'insertion de ORABANK/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,473 [ERROR] Erreur lors de l'insertion de ORABANK/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,473 [ERROR] Erreur lors de l'insertion de ORABANK/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,473 [ERROR] Erreur lors de l'insertion de ORABANK/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,474 [ERROR] Erreur lors de l'insertion de SGBS/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,474 [ERROR] Erreur lors de l'insertion de SGBS/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,475 [ERROR] Erreur lors de l'insertion de SGBS/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,475 [ERROR] Erreur lors de l'insertion de SGBS/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,475 [ERROR] Erreur lors de l'insertion de SGBS/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,476 [ERROR] Erreur lors de l'insertion de SGBS/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,476 [ERROR] Erreur lors de l'insertion de SGBS/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,477 [ERROR] Erreur lors de l'insertion de SGBS/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,477 [ERROR] Erreur lors de l'insertion de UBA/2015: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,478 [ERROR] Erreur lors de l'insertion de UBA/2016: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,478 [ERROR] Erreur lors de l'insertion de UBA/2017: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,479 [ERROR] Erreur lors de l'insertion de UBA/2018: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,479 [ERROR] Erreur lors de l'insertion de UBA/2019: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,479 [ERROR] Erreur lors de l'insertion de UBA/2020: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,480 [ERROR] Erreur lors de l'insertion de UBA/2021: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,480 [ERROR] Erreur lors de l'insertion de UBA/2022: Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS', full error: {'index': 0, 'code': 40, 'errmsg': "Updating the path 'PROVISIONS.RÉGLEMENTÉES' would create a conflict at 'PROVISIONS'"}
+2026-02-23 05:55:55,529 [INFO] MongoDB : 0 insérés, 0 mis à jour, 168 erreurs
+2026-02-23 05:55:55,530 [INFO] ==================================================
+2026-02-23 05:55:55,530 [INFO] ✅ PIPELINE TERMINÉ AVEC SUCCÈS
+2026-02-23 05:55:55,530 [INFO]    Résumé MongoDB : {'inserted': 0, 'updated': 0, 'errors': 168}
+2026-02-23 05:55:55,530 [INFO] ==================================================
+2026-02-23 06:02:39,258 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-02-23 06:02:39,258 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-02-23 06:02:39,258 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-02-23 06:02:39,258 [INFO] ==================================================
+2026-02-23 06:02:39,258 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-02-23 06:02:39,258 [INFO] ==================================================
+2026-02-23 06:02:39,258 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 06:02:39,258 [INFO] Téléchargements terminés : 1/1 réussis
+2026-02-23 06:02:39,258 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 06:02:39,258 [INFO] ==================================================
+2026-02-23 06:02:39,258 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-02-23 06:02:39,258 [INFO] ==================================================
+2026-02-23 06:02:39,258 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-02-23 06:02:39,398 [INFO] Nombre de pages : 369
+2026-02-23 06:02:42,575 [INFO] ✅ SGBS [2021] : 49 KPIs extraits
+2026-02-23 06:02:42,575 [INFO] ✅ SGBS [2022] : 40 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BICIS [2021] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BICIS [2022] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ CBAO [2021] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ CBAO [2022] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ CDS [2021] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ CDS [2022] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BHS [2021] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BHS [2022] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ CITIBANK [2021] : 48 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ CITIBANK [2022] : 48 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ LBA [2021] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ LBA [2022] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BIS [2021] : 45 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BIS [2022] : 45 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ ECOBANK [2021] : 47 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ ECOBANK [2022] : 39 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ ORABANK [2021] : 46 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ ORABANK [2022] : 46 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BSIC [2021] : 48 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BSIC [2022] : 47 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BRM [2021] : 47 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BRM [2022] : 47 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ UBA [2021] : 48 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ UBA [2022] : 48 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ FBNBANK [2021] : 48 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ FBNBANK [2022] : 48 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BNDE [2021] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BNDE [2022] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BDK [2021] : 48 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ BDK [2022] : 48 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ LBO [2021] : 49 KPIs extraits
+2026-02-23 06:02:42,576 [INFO] ✅ LBO [2022] : 49 KPIs extraits
+2026-02-23 06:02:42,582 [INFO] Extraction terminée : 34 enregistrements
+2026-02-23 06:02:42,582 [INFO] [2021] 17 banques extraites
+2026-02-23 06:02:42,582 [INFO] [2022] 17 banques extraites
+2026-02-23 06:02:42,582 [INFO] ==================================================
+2026-02-23 06:02:42,582 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-02-23 06:02:42,582 [INFO] ==================================================
+2026-02-23 06:02:42,582 [INFO] === Fusion des données ===
+2026-02-23 06:02:42,582 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-02-23 06:02:42,767 [INFO] Excel chargé : 134 lignes, années [2015, 2016, 2017, 2018, 2019, 2020]
+2026-02-23 06:02:42,771 [INFO] [2021] Nettoyage terminé : 17 banques, 49 KPIs
+2026-02-23 06:02:42,776 [INFO] [2022] Nettoyage terminé : 17 banques, 49 KPIs
+2026-02-23 06:02:42,786 [INFO] Fusion terminée : 168 lignes, 60 colonnes
+2026-02-23 06:02:42,786 [INFO]   dont 31 colonnes Excel + 29 nouvelles colonnes PDF
+2026-02-23 06:02:42,786 [INFO] Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-23 06:02:42,790 [INFO] Banques : ['BAS', 'BCIM', 'BDK', 'BGFI', 'BHS', 'BICIS', 'BIS', 'BNDE', 'BOA', 'BRM', 'BSIC', 'CBAO', 'CBI', 'CDS', 'CISA', 'CITIBANK', 'ECOBANK', 'FBNBANK', 'LBA', 'LBO', 'NSIA Banque', 'ORABANK', 'SGBS', 'UBA']
+2026-02-23 06:02:42,805 [INFO] Rapport qualité :
+2026-02-23 06:02:42,805 [INFO]   Total enregistrements : 168
+2026-02-23 06:02:42,805 [INFO]   Banques : 24
+2026-02-23 06:02:42,805 [INFO]   Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-02-23 06:02:42,805 [WARNING] Banques avec données manquantes (>30%) :
+2026-02-23 06:02:42,805 [WARNING]   BAS: 69.9% manquant
+2026-02-23 06:02:42,805 [WARNING]   BCIM: 75.9% manquant
+2026-02-23 06:02:42,805 [WARNING]   BDK: 57.4% manquant
+2026-02-23 06:02:42,805 [WARNING]   BGFI: 73.5% manquant
+2026-02-23 06:02:42,805 [WARNING]   BHS: 66.8% manquant
+2026-02-23 06:02:42,805 [WARNING]   BICIS: 56.0% manquant
+2026-02-23 06:02:42,805 [WARNING]   BIS: 58.9% manquant
+2026-02-23 06:02:42,805 [WARNING]   BNDE: 57.1% manquant
+2026-02-23 06:02:42,806 [WARNING]   BOA: 71.1% manquant
+2026-02-23 06:02:42,806 [WARNING]   BRM: 67.9% manquant
+2026-02-23 06:02:42,806 [WARNING]   BSIC: 47.9% manquant
+2026-02-23 06:02:42,806 [WARNING]   CBAO: 56.0% manquant
+2026-02-23 06:02:42,806 [WARNING]   CBI: 69.2% manquant
+2026-02-23 06:02:42,806 [WARNING]   CDS: 56.2% manquant
+2026-02-23 06:02:42,806 [WARNING]   CISA: 71.7% manquant
+2026-02-23 06:02:42,806 [WARNING]   CITIBANK: 58.0% manquant
+2026-02-23 06:02:42,806 [WARNING]   ECOBANK: 59.6% manquant
+2026-02-23 06:02:42,806 [WARNING]   FBNBANK: 56.7% manquant
+2026-02-23 06:02:42,806 [WARNING]   LBA: 58.9% manquant
+2026-02-23 06:02:42,806 [WARNING]   LBO: 51.8% manquant
+2026-02-23 06:02:42,806 [WARNING]   NSIA Banque: 61.2% manquant
+2026-02-23 06:02:42,806 [WARNING]   ORABANK: 57.8% manquant
+2026-02-23 06:02:42,806 [WARNING]   SGBS: 58.5% manquant
+2026-02-23 06:02:42,806 [WARNING]   UBA: 57.8% manquant
+2026-02-23 06:02:42,908 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.csv
+2026-02-23 06:02:42,908 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.xlsx
+2026-02-23 06:02:42,908 [INFO] ==================================================
+2026-02-23 06:02:42,908 [INFO] ÉTAPE 4 : CHARGEMENT DANS MONGODB
+2026-02-23 06:02:42,908 [INFO] ==================================================
+2026-02-23 06:02:43,162 [INFO] ✅ Connexion MongoDB réussie : mongodb://localhost:27017/
+2026-02-23 06:02:43,372 [INFO] MongoDB : 168 insérés, 0 mis à jour, 0 erreurs
+2026-02-23 06:02:43,373 [INFO] ==================================================
+2026-02-23 06:02:43,374 [INFO] ✅ PIPELINE TERMINÉ AVEC SUCCÈS
+2026-02-23 06:02:43,374 [INFO]    Résumé MongoDB : {'inserted': 168, 'updated': 0, 'errors': 0}
+2026-02-23 06:02:43,374 [INFO] ==================================================
+2026-03-03 22:01:08,947 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-03-03 22:01:08,950 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-03-03 22:01:08,950 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-03-03 22:01:08,950 [INFO] ==================================================
+2026-03-03 22:01:08,951 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-03-03 22:01:08,951 [INFO] ==================================================
+2026-03-03 22:01:08,951 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-03-03 22:01:08,951 [INFO] Téléchargements terminés : 1/1 réussis
+2026-03-03 22:01:08,951 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-03-03 22:01:08,951 [INFO] ==================================================
+2026-03-03 22:01:08,951 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-03-03 22:01:08,951 [INFO] ==================================================
+2026-03-03 22:01:08,951 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-03-03 22:01:09,086 [INFO] Nombre de pages : 369
+2026-03-03 22:01:12,178 [INFO] ✅ SGBS [2021] : 51 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ SGBS [2022] : 42 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ BICIS [2021] : 51 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ BICIS [2022] : 51 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ CBAO [2021] : 51 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ CBAO [2022] : 51 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ CDS [2021] : 51 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ CDS [2022] : 51 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ BHS [2021] : 51 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ BHS [2022] : 51 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ CITIBANK [2021] : 50 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ CITIBANK [2022] : 50 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ LBA [2021] : 51 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ LBA [2022] : 51 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ BIS [2021] : 47 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ BIS [2022] : 47 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ ECOBANK [2021] : 49 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ ECOBANK [2022] : 41 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ ORABANK [2021] : 48 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ ORABANK [2022] : 48 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ BSIC [2021] : 50 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ BSIC [2022] : 49 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ BRM [2021] : 49 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ BRM [2022] : 49 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ UBA [2021] : 50 KPIs extraits
+2026-03-03 22:01:12,178 [INFO] ✅ UBA [2022] : 50 KPIs extraits
+2026-03-03 22:01:12,179 [INFO] ✅ FBNBANK [2021] : 50 KPIs extraits
+2026-03-03 22:01:12,179 [INFO] ✅ FBNBANK [2022] : 50 KPIs extraits
+2026-03-03 22:01:12,179 [INFO] ✅ BNDE [2021] : 51 KPIs extraits
+2026-03-03 22:01:12,179 [INFO] ✅ BNDE [2022] : 51 KPIs extraits
+2026-03-03 22:01:12,179 [INFO] ✅ BDK [2021] : 50 KPIs extraits
+2026-03-03 22:01:12,179 [INFO] ✅ BDK [2022] : 50 KPIs extraits
+2026-03-03 22:01:12,179 [INFO] ✅ LBO [2021] : 51 KPIs extraits
+2026-03-03 22:01:12,179 [INFO] ✅ LBO [2022] : 51 KPIs extraits
+2026-03-03 22:01:12,184 [INFO] Extraction terminée : 34 enregistrements
+2026-03-03 22:01:12,184 [INFO] [2021] 17 banques extraites
+2026-03-03 22:01:12,184 [INFO] [2022] 17 banques extraites
+2026-03-03 22:01:12,184 [INFO] ==================================================
+2026-03-03 22:01:12,184 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-03-03 22:01:12,184 [INFO] ==================================================
+2026-03-03 22:01:12,184 [INFO] === Fusion des données ===
+2026-03-03 22:01:12,184 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-03-03 22:01:12,437 [INFO] Excel chargé : 134 lignes, années [2015, 2016, 2017, 2018, 2019, 2020]
+2026-03-03 22:01:12,441 [INFO] [2021] Nettoyage terminé : 17 banques, 51 KPIs
+2026-03-03 22:01:12,446 [INFO] [2022] Nettoyage terminé : 17 banques, 51 KPIs
+2026-03-03 22:01:12,455 [INFO] Fusion terminée : 168 lignes, 60 colonnes
+2026-03-03 22:01:12,455 [INFO]   dont 31 colonnes Excel + 29 nouvelles colonnes PDF
+2026-03-03 22:01:12,455 [INFO] Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-03-03 22:01:12,455 [INFO] Banques : ['BAS', 'BCIM', 'BDK', 'BGFI', 'BHS', 'BICIS', 'BIS', 'BNDE', 'BOA', 'BRM', 'BSIC', 'CBAO', 'CBI', 'CDS', 'CISA', 'CITIBANK', 'ECOBANK', 'FBNBANK', 'LBA', 'LBO', 'NSIA Banque', 'ORABANK', 'SGBS', 'UBA']
+2026-03-03 22:01:12,470 [INFO] Rapport qualité :
+2026-03-03 22:01:12,470 [INFO]   Total enregistrements : 168
+2026-03-03 22:01:12,470 [INFO]   Banques : 24
+2026-03-03 22:01:12,470 [INFO]   Années : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+2026-03-03 22:01:12,470 [WARNING] Banques avec données manquantes (>30%) :
+2026-03-03 22:01:12,470 [WARNING]   BAS: 69.9% manquant
+2026-03-03 22:01:12,470 [WARNING]   BCIM: 75.9% manquant
+2026-03-03 22:01:12,470 [WARNING]   BDK: 56.5% manquant
+2026-03-03 22:01:12,470 [WARNING]   BGFI: 73.5% manquant
+2026-03-03 22:01:12,470 [WARNING]   BHS: 65.8% manquant
+2026-03-03 22:01:12,470 [WARNING]   BICIS: 55.1% manquant
+2026-03-03 22:01:12,470 [WARNING]   BIS: 58.0% manquant
+2026-03-03 22:01:12,470 [WARNING]   BNDE: 56.2% manquant
+2026-03-03 22:01:12,470 [WARNING]   BOA: 71.1% manquant
+2026-03-03 22:01:12,470 [WARNING]   BRM: 66.8% manquant
+2026-03-03 22:01:12,470 [WARNING]   BSIC: 46.7% manquant
+2026-03-03 22:01:12,470 [WARNING]   CBAO: 55.1% manquant
+2026-03-03 22:01:12,470 [WARNING]   CBI: 69.2% manquant
+2026-03-03 22:01:12,470 [WARNING]   CDS: 55.4% manquant
+2026-03-03 22:01:12,470 [WARNING]   CISA: 71.7% manquant
+2026-03-03 22:01:12,470 [WARNING]   CITIBANK: 57.1% manquant
+2026-03-03 22:01:12,470 [WARNING]   ECOBANK: 58.7% manquant
+2026-03-03 22:01:12,470 [WARNING]   FBNBANK: 55.8% manquant
+2026-03-03 22:01:12,470 [WARNING]   LBA: 58.0% manquant
+2026-03-03 22:01:12,471 [WARNING]   LBO: 50.6% manquant
+2026-03-03 22:01:12,471 [WARNING]   NSIA Banque: 61.2% manquant
+2026-03-03 22:01:12,471 [WARNING]   ORABANK: 56.9% manquant
+2026-03-03 22:01:12,471 [WARNING]   SGBS: 57.6% manquant
+2026-03-03 22:01:12,471 [WARNING]   UBA: 56.9% manquant
+2026-03-03 22:01:12,575 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.csv
+2026-03-03 22:01:12,575 [INFO] Données sauvegardées : data/processed/data_bancaire_senegal_2015_2022.xlsx
+2026-03-03 22:01:12,576 [INFO] ==================================================
+2026-03-03 22:01:12,576 [INFO] ÉTAPE 4 : CHARGEMENT DANS MONGODB
+2026-03-03 22:01:12,576 [INFO] ==================================================
+2026-03-03 22:01:12,849 [INFO] ✅ Connexion MongoDB réussie : mongodb://localhost:27017/
+2026-03-03 22:01:12,958 [INFO] MongoDB : 0 insérés, 168 mis à jour, 0 erreurs
+2026-03-03 22:01:12,959 [INFO] ==================================================
+2026-03-03 22:01:12,959 [INFO] ✅ PIPELINE TERMINÉ AVEC SUCCÈS
+2026-03-03 22:01:12,959 [INFO]    Résumé MongoDB : {'inserted': 0, 'updated': 168, 'errors': 0}
+2026-03-03 22:01:12,959 [INFO] ==================================================
