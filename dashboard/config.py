@@ -119,3 +119,8 @@ def _find_data(pattern: str, env_var: str = None) -> str | None:
     return candidates[0] if candidates else None
 
 EXCEL_FALLBACK = _find_data("*bancaire*senegal*.xlsx", "BANCAIRE_EXCEL")
+
+# ── MongoDB ───────────────────────────────────────────────────
+MONGO_URI        = _os.environ.get("MONGO_URI", "mongodb://localhost:27017/")
+MONGO_DB         = _os.environ.get("MONGO_DB", "banking_senegal")
+MONGO_COLLECTION = "bilans_banques"
