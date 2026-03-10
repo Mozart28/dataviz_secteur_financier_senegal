@@ -1,0 +1,90 @@
+/* ============================================================
+   assets/auth.css — Animations + Login + Particules
+   ============================================================ */
+
+/* ── Animations globales ─────────────────────────────────── */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes pulse-border {
+    0%, 100% { border-color: rgba(240,180,41,0.4); }
+    50%       { border-color: rgba(240,180,41,0.9); }
+}
+
+/* ── Cartes secteurs — hover ─────────────────────────────── */
+.sector-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+.sector-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 20px 48px rgba(0,0,0,0.5) !important;
+}
+
+/* ── Grille login ────────────────────────────────────────── */
+.login-grid-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image:
+        linear-gradient(rgba(48,54,61,0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(48,54,61,0.3) 1px, transparent 1px);
+    background-size: 48px 48px;
+    animation: fadeIn 1s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Lueur centrale sur le login */
+.login-grid-bg::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(
+        circle,
+        rgba(240,180,41,0.06) 0%,
+        rgba(63,185,80,0.04) 40%,
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+/* ── Input login — focus ─────────────────────────────────── */
+#login-password:focus {
+    border-color: rgba(240,180,41,0.6) !important;
+    box-shadow: 0 0 0 3px rgba(240,180,41,0.1) !important;
+    outline: none !important;
+}
+
+/* ── Bouton login — hover ────────────────────────────────── */
+#login-btn:hover {
+    background: linear-gradient(135deg,
+        rgba(240,180,41,0.25),
+        rgba(63,185,80,0.2)) !important;
+    border-color: rgba(240,180,41,0.7) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(240,180,41,0.15);
+}
+
+#login-btn:active {
+    transform: translateY(0);
+}
+
+/* ── Compteurs ───────────────────────────────────────────── */
+.animated-counter {
+    display: block;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Tooltips CSS (conservé) ─────────────────────────────── */
+.tooltip-trigger:hover .tooltip-panel {
+    display: block !important;
+}

@@ -18,6 +18,7 @@ import sectors.bancaire.pages.comparaison.callbacks
 import sectors.bancaire.pages.ratios.callbacks
 import sectors.bancaire.pages.benchmark.callbacks
 import sectors.bancaire.pages.carte.callbacks
+import login
 import sectors.bancaire.pages.structure.callbacks
 
 import sectors.assurance.pages.vue_portefeuille.callbacks
@@ -45,12 +46,14 @@ app = dash.Dash(
                 "content": "width=device-width, initial-scale=1"}],
 )
 server = app.server
+app.server.secret_key = "bceao-senegal-2024"
 register_tooltip_callbacks(app)
 
 T = get_theme()
 
 app.layout = html.Div([
     dcc.Location(id="url", refresh=False),
+    dcc.Store(id="auth-store", storage_type="session", data={"authenticated": False}),
     html.Div(id="sidebar-container"),
     html.Main(id="page-content", style={
         "flex": "1", "height": "100vh",
@@ -67,9 +70,16 @@ app.layout = html.Div([
     Output("sidebar-container", "children"),
     Output("page-content", "children"),
     Input("url", "pathname"),
+    Input("auth-store", "data"),
 )
-def route(path):
+def route(path, auth_data):
+    from login import get_layout as login_layout
     from home import get_layout as home_layout
+
+    # ── Vérification authentification ────────────────────────
+    authenticated = auth_data and auth_data.get("authenticated")
+    if not authenticated:
+        return html.Div(), login_layout()
 
     # ── Accueil ───────────────────────────────────────────────
     if not path or path == "/":
@@ -83,7 +93,7 @@ def route(path):
         from sectors.bancaire.pages.ratios.layout      import get_layout as rat
         from sectors.bancaire.pages.benchmark.layout   import get_layout as bm
         from sectors.bancaire.pages.carte.layout       import get_layout as ct
-        from sectors.bancaire.pages.structure.layout    import get_layout as st
+        from sectors.bancaire.pages.structure.layout   import get_layout as st
         nav = sidebar()
         if   path == "/bancaire":             page = vm()
         elif path == "/bancaire/banque":      page = pb()
@@ -102,15 +112,15 @@ def route(path):
         from sectors.energie.pages.performance.layout  import get_layout as eng_perf
         from sectors.energie.pages.climatique.layout   import get_layout as eng_clim
         from sectors.energie.pages.comparaison.layout  import get_layout as eng_cmp
-        from sectors.energie.pages.anomalies.layout     import get_layout as eng_ano
+        from sectors.energie.pages.anomalies.layout    import get_layout as eng_ano
         nav = sidebar()
-        if   path in ("/energie", "/energie/"):    page = eng_vg()
-        elif path == "/energie/temporelle":        page = eng_tmp()
-        elif path == "/energie/performance":       page = eng_perf()
-        elif path == "/energie/climatique":        page = eng_clim()
-        elif path == "/energie/comparaison":       page = eng_cmp()
-        elif path == "/energie/anomalies":         page = eng_ano()
-        else:                                      page = eng_vg()
+        if   path in ("/energie", "/energie/"):  page = eng_vg()
+        elif path == "/energie/temporelle":      page = eng_tmp()
+        elif path == "/energie/performance":     page = eng_perf()
+        elif path == "/energie/climatique":      page = eng_clim()
+        elif path == "/energie/comparaison":     page = eng_cmp()
+        elif path == "/energie/anomalies":       page = eng_ano()
+        else:                                    page = eng_vg()
         return nav, page
 
     # ── Secteur Assurance ─────────────────────────────────────
@@ -129,7 +139,7 @@ def route(path):
         elif path == "/assurance/scoring":
             from sectors.assurance.pages.scoring.layout import get_layout as ass_sc
             page = ass_sc()
-        else:                                          page = ass_vm()
+        else:                                         page = ass_vm()
         return nav, page
 
     # ── 404 ───────────────────────────────────────────────────
@@ -144,7 +154,6 @@ def route(path):
                    "fontSize": "11px", "marginTop": "16px",
                    "display": "block", "textDecoration": "none"}),
     ], style={"padding": "80px 60px"})
-
 
 app.index_string = """<!DOCTYPE html>
 <html><head>

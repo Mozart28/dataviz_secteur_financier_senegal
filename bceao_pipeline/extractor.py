@@ -1,9 +1,12 @@
 # ============================================================
-#  extractor.py — Extraction complète PDF BCEAO (v8)
+#  extractor.py — Extraction complète PDF BCEAO (v9)
 #  Noms de colonnes alignés EXACTEMENT avec l'Excel
 #  49 KPIs par banque : 29 Bilan + 20 Résultat
 #  + Mapping automatique PDF → noms Excel dashboard
 #    (EMPLOI, BILAN, RESSOURCES, FONDS.PROPRE)
+#  v9 : BILAN reconstruit par somme postes actif
+#       RESSOURCES : double variante accent
+#       FONDS.PROPRE 2020 : fallback CAPITAUX.PROPRES
 # ============================================================
 import re, math, logging
 import pdfplumber
@@ -59,17 +62,33 @@ SEQUENCE_RESULTAT = [
 ]
 
 # ── Mapping colonnes PDF → noms Excel du dashboard ───────────
-# Les libellés PDF sont transformés par to_col_bilan() en clés
-# avec accents et points. Ce mapping les aligne vers les noms
-# attendus par le dashboard (colonnes historiques Excel).
 PDF_TO_EXCEL_COLS = {
-    "CRÉANCES.SUR.LA.CLIENTÈLE":                 "EMPLOI",
-    "TOTAL.DE.LACTIF":                           "BILAN",
-    "DETTES.À.LÉGARD.DE.LA.CLIENTÈLE":          "RESSOURCES",
-    "CAPITAUX.PROPRES.ET.RESSOURCES.ASSIMILÉES": "FONDS.PROPRE",
+    "CRÉANCES.SUR.LA.CLIENTÈLE":                  "EMPLOI",
+    "TOTAL.DE.LACTIF":                            "BILAN",       # présent dans certaines pages
+    "DETTES.À.L.ÉGARD.DE.LA.CLIENTÈLE":          "RESSOURCES",  # variante espace après L
+    "DETTES.À.LÉGARD.DE.LA.CLIENTÈLE":           "RESSOURCES",  # variante sans espace
+    "CAPITAUX.PROPRES.ET.RESSOURCES.ASSIMILÉES":  "FONDS.PROPRE",
 }
 
-# ── Noms des colonnes Bilan (nouvelles colonnes, pas dans l'Excel) ──
+# Postes actif pour reconstruire BILAN quand TOTAL.DE.LACTIF est absent
+ACTIF_COLS = [
+    "CAISSE.BANQUE.CENTRALE.CCP",
+    "EFFETS.PUBLICS.ET.VALEURS.ASSIMILÉES",
+    "CRÉANCES.INTERBANCAIRES.ET.ASSIMILÉES",
+    "CRÉANCES.SUR.LA.CLIENTÈLE",
+    "OBLIGATIONS.ET.AUTRES.TITRES.À.REVENU.FIXE",
+    "ACTIONS.ET.AUTRES.TITRES.À.REVENU.VARIABLE",
+    "ACTIONNAIRES.OU.ASSOCIÉS",
+    "AUTRES.ACTIFS",
+    "COMPTES.DE.RÉGULARISATION",
+    "PARTICIPATIONS.ET.AUTRES.TITRES.DÉTENUS.À.LONG.TERME",
+    "PARTS.DANS.LES.ENTREPRISES.LIÉES",
+    "PRÊTS.SUBORDONNÉS",
+    "IMMOBILISATIONS.INCORPORELLES",
+    "IMMOBILISATIONS.CORPORELLES",
+]
+
+# ── Noms des colonnes Bilan ───────────────────────────────────
 def to_col_bilan(label):
     """Libellé Bilan → nom de colonne avec points (convention cohérente)."""
     name = label.strip().upper()
@@ -237,6 +256,45 @@ def normalize_sigle(raw):
             return excel_s
     return None
 
+# ── Reconstruction des colonnes manquantes ────────────────────
+
+def _reconstruct_missing(kpis, sigle, year):
+    """
+    Reconstruit BILAN, RESSOURCES, FONDS.PROPRE si absents après le mapping.
+    Couvre les cas où la structure table PDF fusionne les labels en une seule
+    cellule, rendant TOTAL.DE.LACTIF non extractible directement.
+    """
+    # BILAN = somme postes actif (TOTAL.DE.LACTIF absent dans table fusionnée)
+    if "BILAN" not in kpis:
+        vals = [kpis[c] for c in ACTIF_COLS if c in kpis and kpis[c] is not None]
+        if len(vals) >= 3:
+            kpis["BILAN"] = sum(vals)
+            logger.debug(f"  {sigle} [{year}] BILAN reconstruit = {kpis['BILAN']} ({len(vals)} postes actif)")
+        else:
+            logger.warning(f"  {sigle} [{year}] BILAN non reconstructible ({len(vals)} postes actif dispo)")
+
+    # RESSOURCES = chercher toute colonne dettes clientèle (fallback accent)
+    if "RESSOURCES" not in kpis:
+        for k in list(kpis.keys()):
+            if "DETTES" in k and "CLIENT" in k:
+                kpis["RESSOURCES"] = kpis[k]
+                logger.debug(f"  {sigle} [{year}] RESSOURCES ← {k} = {kpis['RESSOURCES']}")
+                break
+        if "RESSOURCES" not in kpis:
+            logger.warning(f"  {sigle} [{year}] RESSOURCES non trouvé")
+
+    # FONDS.PROPRE = fallback sur toute colonne CAPITAUX PROPRES
+    if "FONDS.PROPRE" not in kpis:
+        for k in list(kpis.keys()):
+            if "CAPITAUX" in k and "PROPRES" in k:
+                kpis["FONDS.PROPRE"] = kpis[k]
+                logger.debug(f"  {sigle} [{year}] FONDS.PROPRE ← {k} = {kpis['FONDS.PROPRE']}")
+                break
+        if "FONDS.PROPRE" not in kpis:
+            logger.warning(f"  {sigle} [{year}] FONDS.PROPRE non trouvé")
+
+    return kpis
+
 # ── Extracteur principal ──────────────────────────────────────
 
 def extract_senegal_data(pdf_path):
@@ -280,15 +338,14 @@ def extract_senegal_data(pdf_path):
                         logger.warning(f"{sigle} [{year}] : aucun KPI")
                         continue
 
-                    # ── Aliaser les colonnes PDF vers les noms Excel ──────
-                    # Les 4 colonnes historiques (EMPLOI, BILAN, RESSOURCES,
-                    # FONDS.PROPRE) sont absentes du PDF sous ces noms mais
-                    # présentes sous leurs libellés comptables. On les copie
-                    # ici pour alimenter le dashboard sans modifier le reste.
+                    # ── Étape 1 : mapping direct PDF → noms Excel ────────
                     for pdf_col, excel_col in PDF_TO_EXCEL_COLS.items():
                         if pdf_col in kpis and excel_col not in kpis:
                             kpis[excel_col] = kpis[pdf_col]
                             logger.debug(f"  {sigle} [{year}] alias {pdf_col} → {excel_col} = {kpis[excel_col]}")
+
+                    # ── Étape 2 : reconstruction des colonnes manquantes ──
+                    kpis = _reconstruct_missing(kpis, sigle, year)
 
                     results.append({
                         "Sigle":          sigle,
@@ -296,7 +353,13 @@ def extract_senegal_data(pdf_path):
                         "ANNEE":          year,
                         **kpis,
                     })
-                    logger.info(f"✅ {sigle} [{year}] : {len(kpis)} KPIs extraits")
+                    logger.info(
+                        f"✅ {sigle} [{year}] : {len(kpis)} KPIs — "
+                        f"BILAN={'✓' if 'BILAN' in kpis else '✗'}  "
+                        f"EMPLOI={'✓' if 'EMPLOI' in kpis else '✗'}  "
+                        f"RESSOURCES={'✓' if 'RESSOURCES' in kpis else '✗'}  "
+                        f"FONDS.PROPRE={'✓' if 'FONDS.PROPRE' in kpis else '✗'}"
+                    )
 
     except Exception as e:
         logger.error(f"Erreur : {e}", exc_info=True)
