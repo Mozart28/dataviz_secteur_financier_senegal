@@ -28,7 +28,6 @@ import sectors.energie.pages.performance.callbacks
 import sectors.energie.pages.climatique.callbacks
 import sectors.energie.pages.comparaison.callbacks
 import sectors.energie.pages.anomalies.callbacks
-import login
 import home
 
 logging.basicConfig(level=logging.INFO,
@@ -76,8 +75,7 @@ T = get_theme()
 
 app.layout = html.Div([
     dcc.Location(id="url", refresh=False),
-    dcc.Store(id="auth-store", storage_type="session", data={"authenticated": False}),
-    dcc.Store(id="tour-store", data={"step": 0, "active": False}),
+    dcc.Store(id="tour-store", data={"step": 0, "active": True}),
 
     # ── Onboarding overlay ────────────────────────────────────
     html.Div(id="tour-backdrop", style={
@@ -157,15 +155,9 @@ app.layout = html.Div([
     Output("sidebar-container", "children"),
     Output("page-content", "children"),
     Input("url", "pathname"),
-    Input("auth-store", "data"),
 )
-def route(path, auth_data):
-    from login import get_layout as login_layout
-    from home  import get_layout as home_layout
-
-    authenticated = auth_data and auth_data.get("authenticated")
-    if not authenticated:
-        return html.Div(), login_layout()
+def route(path):
+    from home import get_layout as home_layout
 
     if not path or path == "/":
         return html.Div(), home_layout()
@@ -237,11 +229,11 @@ def route(path, auth_data):
 
 # ── Panneau Sources ───────────────────────────────────────────
 @callback(
-    Output("about-panel",   "style"),
-    Output("about-backdrop","style"),
-    Input("about-open",     "n_clicks"),
-    Input("about-close",    "n_clicks"),
-    Input("about-backdrop", "n_clicks"),
+    Output("about-panel",    "style"),
+    Output("about-backdrop", "style"),
+    Input("about-open",      "n_clicks"),
+    Input("about-close",     "n_clicks"),
+    Input("about-backdrop",  "n_clicks"),
     prevent_initial_call=True,
 )
 def toggle_about_panel(o, c, b):
@@ -254,29 +246,31 @@ def toggle_about_panel(o, c, b):
         "display": "flex", "flexDirection": "column",
         "boxShadow": "-24px 0 64px rgba(0,0,0,0.6)",
     }
-    bd_hidden  = {"position": "fixed", "inset": "0", "background": "rgba(0,0,0,0.5)",
-                  "zIndex": "99", "display": "none", "cursor": "pointer"}
+    bd_hidden = {"position": "fixed", "inset": "0", "background": "rgba(0,0,0,0.5)",
+                 "zIndex": "99", "display": "none", "cursor": "pointer"}
     if ctx.triggered_id == "about-open":
         return {**panel_base, "transform": "translateX(0)"}, {**bd_hidden, "display": "block"}
     return {**panel_base, "transform": "translateX(100%)"}, bd_hidden
 
 
-# ── Tour : déclenchement auto au login ────────────────────────
+# ── Tour : déclenchement auto à l'ouverture ───────────────────
 @callback(
     Output("tour-store", "data"),
-    Input("auth-store", "data"),
+    Input("url", "pathname"),
     State("tour-store", "data"),
-    prevent_initial_call=True,
 )
-def start_tour(auth_data, tour_data):
-    if auth_data and auth_data.get("authenticated"):
+def start_tour(pathname, tour_data):
+    # Lance le tour uniquement sur la home et si pas déjà actif
+    if pathname in (None, "/") and not (tour_data or {}).get("active"):
         return {"step": 0, "active": True}
-    return tour_data or {"step": 0, "active": False}
+    if tour_data and tour_data.get("active"):
+        return tour_data
+    return {"step": 0, "active": True}
 
 
 # ── Tour : navigation (next / prev / skip) ────────────────────
 @callback(
-    Output("tour-store",   "data", allow_duplicate=True),
+    Output("tour-store",  "data", allow_duplicate=True),
     Input("tour-next",  "n_clicks"),
     Input("tour-prev",  "n_clicks"),
     Input("tour-skip",  "n_clicks"),
@@ -321,13 +315,13 @@ def render_tour(tour_data):
         "boxShadow": "0 24px 64px rgba(0,0,0,0.7)",
         "zIndex": "201",
     }
-    bd_hidden     = {"position": "fixed", "inset": "0", "background": "rgba(0,0,0,0.7)",
-                     "zIndex": "200", "display": "none"}
-    prev_hidden   = {"background": "none", "border": "1px solid #30363D", "borderRadius": "6px",
-                     "color": "#8B949E", "fontFamily": MONO, "fontSize": "13px",
-                     "cursor": "pointer", "padding": "8px 14px", "marginRight": "8px",
-                     "display": "none"}
-    prev_visible  = {**prev_hidden, "display": "inline-block"}
+    bd_hidden    = {"position": "fixed", "inset": "0", "background": "rgba(0,0,0,0.7)",
+                    "zIndex": "200", "display": "none"}
+    prev_hidden  = {"background": "none", "border": "1px solid #30363D", "borderRadius": "6px",
+                    "color": "#8B949E", "fontFamily": MONO, "fontSize": "13px",
+                    "cursor": "pointer", "padding": "8px 14px", "marginRight": "8px",
+                    "display": "none"}
+    prev_visible = {**prev_hidden, "display": "inline-block"}
 
     if not tour_data or not tour_data.get("active"):
         return bd_hidden, {**bubble_base, "display": "none"}, [], "", "", "Suivant →", prev_hidden
@@ -335,7 +329,6 @@ def render_tour(tour_data):
     step = tour_data.get("step", 0)
     s    = TOUR_STEPS[step]
 
-    # Dots de progression
     dots = [
         html.Div(style={
             "width": "8px", "height": "8px", "borderRadius": "50%",
