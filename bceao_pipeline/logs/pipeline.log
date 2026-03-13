@@ -232,3 +232,86 @@ Traceback (most recent call last):
     handle = open(handle, ioargs.mode)
              ^^^^^^^^^^^^^^^^^^^^^^^^^
 FileNotFoundError: [Errno 2] No such file or directory: 'data/BASE_SENEGAL2.xlsx'
+2026-03-10 20:39:50,762 [INFO] 🚀 DÉMARRAGE DU PIPELINE BCEAO
+2026-03-10 20:39:50,763 [INFO] Source   : PDF BCEAO 2022 (contient les années 2020, 2021, 2022)
+2026-03-10 20:39:50,763 [INFO] Objectif : extraire 2021 & 2022 → fusionner avec Excel 2015-2020
+2026-03-10 20:39:50,763 [INFO] ==================================================
+2026-03-10 20:39:50,763 [INFO] ÉTAPE 1 : TÉLÉCHARGEMENT DU PDF BCEAO 2022
+2026-03-10 20:39:50,763 [INFO] ==================================================
+2026-03-10 20:39:50,763 [INFO] [2022] PDF déjà présent : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-03-10 20:39:50,763 [INFO] Téléchargements terminés : 1/1 réussis
+2026-03-10 20:39:50,763 [INFO] PDF disponible : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-03-10 20:39:50,763 [INFO] ==================================================
+2026-03-10 20:39:50,763 [INFO] ÉTAPE 2 : EXTRACTION 2021 & 2022 DEPUIS LE PDF 2022
+2026-03-10 20:39:50,763 [INFO] ==================================================
+2026-03-10 20:39:50,763 [INFO] Ouverture du PDF : data/raw_pdfs/bceao_bilans_2022.pdf
+2026-03-10 20:39:50,906 [INFO] Nombre de pages : 369
+2026-03-10 20:39:54,032 [INFO] ✅ SGBS [2021] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,032 [INFO] ✅ SGBS [2022] : 44 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,032 [INFO] ✅ BICIS [2021] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,032 [INFO] ✅ BICIS [2022] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,032 [INFO] ✅ CBAO [2021] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,032 [INFO] ✅ CBAO [2022] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,032 [INFO] ✅ CDS [2021] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ CDS [2022] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BHS [2021] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BHS [2022] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ CITIBANK [2021] : 52 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ CITIBANK [2022] : 52 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ LBA [2021] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ LBA [2022] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BIS [2021] : 49 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BIS [2022] : 49 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ ECOBANK [2021] : 51 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ ECOBANK [2022] : 43 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ ORABANK [2021] : 50 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ ORABANK [2022] : 50 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BSIC [2021] : 52 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BSIC [2022] : 51 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BRM [2021] : 51 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BRM [2022] : 51 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ UBA [2021] : 52 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ UBA [2022] : 52 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ FBNBANK [2021] : 52 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ FBNBANK [2022] : 52 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BNDE [2021] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BNDE [2022] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BDK [2021] : 52 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ BDK [2022] : 52 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ LBO [2021] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,033 [INFO] ✅ LBO [2022] : 53 KPIs — BILAN=✓  EMPLOI=✓  RESSOURCES=✓  FONDS.PROPRE=✓
+2026-03-10 20:39:54,038 [INFO] Extraction terminée : 34 enregistrements
+2026-03-10 20:39:54,038 [INFO] [2021] 17 banques extraites
+2026-03-10 20:39:54,039 [INFO] [2022] 17 banques extraites
+2026-03-10 20:39:54,039 [INFO] ==================================================
+2026-03-10 20:39:54,039 [INFO] ÉTAPE 3 : FUSION ET NETTOYAGE
+2026-03-10 20:39:54,039 [INFO] ==================================================
+2026-03-10 20:39:54,039 [INFO] === Fusion des données ===
+2026-03-10 20:39:54,039 [INFO] Chargement du fichier Excel : data/BASE_SENEGAL2.xlsx
+2026-03-10 20:39:54,039 [ERROR] ❌ ERREUR PIPELINE : [Errno 2] No such file or directory: 'data/BASE_SENEGAL2.xlsx'
+Traceback (most recent call last):
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/pipeline.py", line 147, in run_full_pipeline
+    df = run_merge_and_clean(scraped_data)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/pipeline.py", line 96, in run_merge_and_clean
+    df = merge_all_data(EXCEL_PATH, scraped_data)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/cleaner.py", line 58, in merge_all_data
+    df_excel = load_excel_data(excel_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/m12020/Downloads/PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/bceao_pipeline/cleaner.py", line 17, in load_excel_data
+    df = pd.read_excel(excel_path, sheet_name="Sheet 1")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 495, in read_excel
+    io = ExcelFile(
+         ^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1550, in __init__
+    ext = inspect_excel_format(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1402, in inspect_excel_format
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/io/common.py", line 882, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/BASE_SENEGAL2.xlsx'

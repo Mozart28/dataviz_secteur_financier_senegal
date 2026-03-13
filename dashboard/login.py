@@ -1,9 +1,10 @@
 # ============================================================
-#  login.py — Authentification via dcc.Store
+#  login.py — Page d'authentification
 # ============================================================
+import os
 from dash import html, dcc, Input, Output, State, callback, no_update
 from config import MONO, SERIF, SANS
-import os 
+
 APP_PASSWORD = os.environ.get("APP_PASSWORD", "senegal2024")
 
 
@@ -53,7 +54,7 @@ def get_layout():
                         id="login-password",
                         type="password",
                         placeholder="••••••••••••",
-                        debounce=False,
+                        debounce=True,
                         style={
                             "width": "100%", "background": "#0D1117",
                             "border": "1px solid #30363D", "borderRadius": "6px",
@@ -77,9 +78,9 @@ def get_layout():
                     "background": "linear-gradient(135deg, rgba(240,180,41,0.15), rgba(63,185,80,0.15))",
                     "border": "1px solid rgba(240,180,41,0.4)",
                     "borderRadius": "6px", "color": "#F0B429",
-                    "fontFamily": MONO, "fontSize": "12px", "fontWeight": "600",
-                    "letterSpacing": "3px", "padding": "14px",
-                    "cursor": "pointer", "transition": "all 0.2s ease",
+                    "fontFamily": MONO, "fontSize": "12px",
+                    "fontWeight": "600", "letterSpacing": "3px",
+                    "padding": "14px", "cursor": "pointer",
                 }),
 
                 html.Div(style={
@@ -89,42 +90,50 @@ def get_layout():
                 }),
                 html.Div([
                     html.Span("🏦 Bancaire  ", style={"color": "#F0B429"}),
-                    html.Span("⚡ Énergie  ", style={"color": "#3FB950"}),
-                    html.Span("◉ Assurance", style={"color": "#58A6FF"}),
-                ], style={"textAlign": "center", "fontFamily": MONO,
-                          "fontSize": "10px", "color": "#8B949E"}),
+                    html.Span("⚡ Énergie  ",  style={"color": "#3FB950"}),
+                    html.Span("◉ Assurance",  style={"color": "#58A6FF"}),
+                ], style={
+                    "textAlign": "center", "fontFamily": MONO,
+                    "fontSize": "10px", "color": "#8B949E",
+                }),
             ], style={
                 "background": "#161B22", "border": "1px solid #30363D",
                 "borderRadius": "12px", "padding": "36px",
                 "borderTop": "3px solid #F0B429",
-                "boxShadow": "0 24px 64px rgba(0,0,0,0.6)", "width": "360px",
+                "boxShadow": "0 24px 64px rgba(0,0,0,0.6)",
+                "width": "360px",
             }),
 
             html.Div("BCEAO · SENELEC · CIMA · M2 Big Data", style={
-                "color": "#8B949E", "fontSize": "9px", "fontFamily": MONO,
-                "letterSpacing": "2px", "textAlign": "center",
-                "marginTop": "32px", "opacity": "0.5",
+                "color": "#8B949E", "fontSize": "9px",
+                "fontFamily": MONO, "letterSpacing": "2px",
+                "textAlign": "center", "marginTop": "32px", "opacity": "0.5",
             }),
+
         ], style={
             "display": "flex", "flexDirection": "column",
             "alignItems": "center", "justifyContent": "center",
             "minHeight": "100vh", "position": "relative", "zIndex": "1",
         }),
-    ], style={"background": "#0D1117", "minHeight": "100vh",
-              "position": "relative", "overflow": "hidden"})
+
+    ], style={
+        "background": "#0D1117", "minHeight": "100vh",
+        "position": "relative", "overflow": "hidden",
+    })
 
 
+# ── Callback : vérifie le mot de passe et met à jour auth-store ──
 @callback(
-    Output("login-error", "children"),
-    Output("auth-store", "data"),
-    Input("login-btn", "n_clicks"),
+    Output("auth-store",   "data"),
+    Output("login-error",  "children"),
+    Input("login-btn",      "n_clicks"),
     Input("login-password", "n_submit"),
     State("login-password", "value"),
     prevent_initial_call=True,
 )
 def check_login(n_clicks, n_submit, password):
     if not password:
-        return "Entrez votre mot de passe.", no_update
+        return no_update, "Entrez votre mot de passe."
     if password == APP_PASSWORD:
-        return "", {"authenticated": True}
-    return "❌ Mot de passe incorrect.", no_update
+        return {"authenticated": True}, ""
+    return no_update, "❌ Mot de passe incorrect."
