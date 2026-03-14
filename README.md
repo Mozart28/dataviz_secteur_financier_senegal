@@ -1,54 +1,140 @@
 # Observatoire Économique · Sénégal
 
-Dashboard de datavisualisation multi-secteur pour l'analyse des secteurs **bancaire**, **énergétique** et **assurantiel** au Sénégal.
+> Dashboard de datavisualisation interactive pour l'analyse des secteurs **bancaire**, **énergétique** et **assurantiel** au Sénégal.
 
-> Projet académique M2 Big Data — données officielles BCEAO · Parc PV Sénégal · Données confidentielles
-
----
-
-## Aperçu
-
-| Secteur | Pages | Source | Période |
-|---|---|---|---|
-| 🏦 Bancaire | 7 | BCEAO | 2015 – 2022 |
-| ⚡ Énergie | 6 | Parc Photovoltaïque Sénégal | — |
-| ◉ Assurance | 4 | Données confidentielles | — |
+🔗 **[Live Demo → dataviz-secteur-financier-senegal.onrender.com](https://dataviz-secteur-financier-senegal.onrender.com)**
 
 ---
 
-## Stack technique
+## Présentation
 
-- **Frontend** — Dash (Plotly) · Dash Bootstrap Components
-- **Backend** — Python 3.12 · Flask
-- **Base de données** — MongoDB Atlas
-- **Pipeline données** — Extraction PDF BCEAO → pandas → MongoDB
-- **Déploiement** — Render
+Ce projet propose une plateforme d'analyse multi-secteur construite sur des données officielles extraites automatiquement depuis des rapports PDF de la BCEAO, enrichies de données terrain du parc photovoltaïque sénégalais et de données assurantielles anonymisées.
+
+L'objectif : rendre lisibles et exploitables des données financières complexes à travers des visualisations interactives, un pipeline de données automatisé et une interface pensée pour l'analyse.
 
 ---
 
-## Structure du projet
+## Secteurs couverts
+
+### 🏦 Secteur Bancaire — 7 pages
+| Page | Description |
+|---|---|
+| Vue Marché | Vue d'ensemble du secteur bancaire sénégalais |
+| Fiche Banque | Analyse individuelle par établissement |
+| Comparaison | Comparatif multi-banques sur indicateurs clés |
+| Ratios | Ratios prudentiels et de performance |
+| Benchmark | Positionnement relatif des banques |
+| Carte | Répartition géographique des agences |
+| Structure | Structure bilancielle agrégée du secteur |
+
+**Source :** BCEAO · 24 banques · 2015 – 2022 · 168 observations · 60 variables
+
+### ⚡ Secteur Énergie — 6 pages
+| Page | Description |
+|---|---|
+| Vue Globale | Production et consommation d'énergie solaire |
+| Analyse Temporelle | Évolution temporelle des mesures capteurs |
+| Performance | Rendement et efficacité de l'installation |
+| Climatique | Corrélation irradiation / production |
+| Comparaison | Comparatif périodes / saisons |
+| Anomalies | Détection d'anomalies de production |
+
+**Source :** Parc Photovoltaïque Sénégal · 35 000+ mesures capteurs terrain
+
+### ◉ Secteur Assurance — 4 pages
+| Page | Description |
+|---|---|
+| Vue Portefeuille | Analyse du portefeuille de contrats |
+| Sinistres | Fréquence, coût et évolution des sinistres |
+| Profil Assuré | Segmentation et profil des assurés |
+| Rentabilité | Indicateurs de rentabilité technique |
+
+**Source :** Données réelles anonymisées · Portefeuille entreprise
+
+---
+
+## Architecture technique
 
 ```
-PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/
-├── dashboard/
-│   ├── app.py                  # Point d'entrée, routing, auth
-│   ├── login.py                # Page d'authentification
-│   ├── home.py                 # Page d'accueil multi-secteur
-│   ├── config.py               # Thème, couleurs, constantes
-│   ├── assets/                 # CSS global
-│   ├── components/
-│   │   ├── navbar.py           # Sidebar + fil d'Ariane
-│   │   ├── export_utils.py     # Export CSV universel
-│   │   └── tooltip_info.py
-│   └── sectors/
-│       ├── bancaire/           # 7 pages
-│       ├── energie/            # 6 pages
-│       └── assurance/          # 4 pages
-├── bceao_pipeline/
-│   ├── extractor.py            # Extraction PDF BCEAO (v9)
-│   └── data/processed/         # CSV final 168 lignes · 60 colonnes
-├── inject_mongo.py             # Script réinjection MongoDB Atlas
-└── requirements.txt
+┌─────────────────────────────────────────────────────────┐
+│                     SOURCES DE DONNÉES                  │
+│   PDF BCEAO ──── Excel BCEAO ──── Capteurs PV ──── CSV  │
+└──────────────────────┬──────────────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────────────┐
+│                  PIPELINE D'EXTRACTION                   │
+│                                                         │
+│   bceao_pipeline/extractor.py (v9)                      │
+│   ├── Parsing PDF (pdfplumber)                          │
+│   ├── Nettoyage & validation (pandas)                   │
+│   └── Export CSV → 168 lignes · 60 colonnes             │
+└──────────────────────┬──────────────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────────────┐
+│                   MONGODB ATLAS                          │
+│   Base : senegal_finance                                │
+│   Collection : bancaire (168 documents)                 │
+└──────────────────────┬──────────────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────────────┐
+│                  DASHBOARD DASH                          │
+│                                                         │
+│   app.py ──── routing ──── auth                         │
+│   ├── home.py          (accueil multi-secteur)          │
+│   ├── components/                                       │
+│   │   ├── navbar.py    (sidebar + fil d'Ariane)         │
+│   │   └── export_utils.py  (export CSV)                 │
+│   └── sectors/                                         │
+│       ├── bancaire/    (7 pages + callbacks)            │
+│       ├── energie/     (6 pages + callbacks)            │
+│       └── assurance/   (4 pages + callbacks)            │
+└──────────────────────┬──────────────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────────────┐
+│                     RENDER (Cloud)                       │
+│   https://dataviz-secteur-financier-senegal.onrender.com│
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Pipeline d'extraction BCEAO
+
+L'extracteur `bceao_pipeline/extractor.py` traite automatiquement les rapports PDF annuels publiés par la BCEAO :
+
+```
+PDF BCEAO (2021, 2022)
+       │
+       ▼
+pdfplumber → extraction tableaux bruts
+       │
+       ▼
+Détection automatique des lignes BILAN / RESSOURCES / FONDS PROPRES
+       │
+       ▼
+Nettoyage : suppression espaces insécables, normalisation encodage
+       │
+       ▼
+Fusion avec données Excel historiques (2015–2020)
+       │
+       ▼
+Validation : 17/17 banques × 2 années · 0 NaN sur colonnes clés
+       │
+       ▼
+data/processed/data_bancaire_senegal_2015_2022.csv
+(168 lignes · 60 colonnes · 24 banques · 8 années)
+```
+
+Pour réexécuter l'extraction :
+```bash
+python bceao_pipeline/extractor.py
+```
+
+Pour réinjecter dans MongoDB Atlas :
+```bash
+python inject_mongo.py \
+  --uri "mongodb+srv://user:pass@cluster.mongodb.net/" \
+  --csv bceao_pipeline/data/processed/data_bancaire_senegal_2015_2022.csv
 ```
 
 ---
@@ -67,39 +153,55 @@ cd dashboard
 python app.py
 ```
 
-Accès : [http://localhost:8050](http://localhost:8050) · Mot de passe : défini via `APP_PASSWORD`
+Accès : [http://localhost:8050](http://localhost:8050)
+
+---
+
+## Stack technique
+
+| Composant | Technologie |
+|---|---|
+| Interface | Dash · Plotly · Dash Bootstrap Components |
+| Backend | Python 3.12 · Flask |
+| Base de données | MongoDB Atlas |
+| Extraction PDF | pdfplumber · pandas |
+| Déploiement | Render |
+| Versioning | GitHub |
 
 ---
 
 ## Variables d'environnement
 
-| Variable | Description | Exemple |
-|---|---|---|
-| `MONGO_URI` | URI MongoDB Atlas | `mongodb+srv://user:pass@cluster.mongodb.net/` |
-| `APP_PASSWORD` | Mot de passe dashboard | `senegal2024` |
+| Variable | Description |
+|---|---|
+| `MONGO_URI` | URI de connexion MongoDB Atlas |
+| `APP_PASSWORD` | Mot de passe d'accès au dashboard |
 
 ---
 
-## Pipeline données BCEAO
+## Structure du projet
 
-Le script `bceao_pipeline/extractor.py` extrait automatiquement les bilans bancaires depuis les PDF annuels BCEAO :
-
-```bash
-python bceao_pipeline/extractor.py
 ```
-
-Résultat : `data/processed/data_bancaire_senegal_2015_2022.csv` — 168 documents · 24 banques · 8 années
-
-Pour réinjecter dans MongoDB Atlas :
-
-```bash
-python inject_mongo.py \
-  --uri "mongodb+srv://..." \
-  --csv bceao_pipeline/data/processed/data_bancaire_senegal_2015_2022.csv
+PROJET_DATAVIZ_SECTEUR_BANCAIRE_SENEGAL/
+├── dashboard/
+│   ├── app.py                      # Point d'entrée, routing
+│   ├── home.py                     # Page d'accueil
+│   ├── config.py                   # Thème, constantes
+│   ├── assets/                     # CSS
+│   ├── components/
+│   │   ├── navbar.py               # Sidebar + fil d'Ariane
+│   │   ├── export_utils.py         # Export CSV universel
+│   │   └── tooltip_info.py
+│   └── sectors/
+│       ├── bancaire/               # 7 pages (layout + callbacks)
+│       ├── energie/                # 6 pages (layout + callbacks)
+│       └── assurance/              # 4 pages (layout + callbacks)
+├── bceao_pipeline/
+│   ├── extractor.py                # Extraction PDF BCEAO v9
+│   └── data/
+│       └── processed/
+│           └── data_bancaire_senegal_2015_2022.csv
+├── inject_mongo.py                 # Réinjection MongoDB Atlas
+├── requirements.txt
+└── README.md
 ```
-
----
-
-## Déploiement
-
-Le dashboard est déployé sur **Render** via connexion GitHub. Tout push sur `main` déclenche un redéploiement automatique.
