@@ -48,6 +48,12 @@ TOUR_STEPS = [
         "show_prev": True,
     },
     {
+        "title": "Infobulles explicatives ？",
+        "text": "Sur chaque graphique, un bouton ？ affiche une explication détaillée : méthodologie, indicateurs clés et lecture des données.",
+        "btn_next": "Suivant →",
+        "show_prev": True,
+    },
+    {
         "title": "Sources officielles ◈",
         "text": "Toutes les données proviennent de sources officielles (BCEAO, SENELEC, CIMA). Consultez-les via ce bouton.",
         "btn_next": "Suivant →",
@@ -75,7 +81,8 @@ T = get_theme()
 
 app.layout = html.Div([
     dcc.Location(id="url", refresh=False),
-    dcc.Store(id="tour-store", data={"step": 0, "active": True}),
+    # visited=False → tour pas encore vu, active=False → pas encore déclenché
+    dcc.Store(id="tour-store", data={"step": 0, "active": False, "visited": False}),
 
     # ── Onboarding overlay ────────────────────────────────────
     html.Div(id="tour-backdrop", style={
@@ -84,21 +91,17 @@ app.layout = html.Div([
         "zIndex": "200", "display": "none",
     }),
     html.Div([
-        # Progression dots
         html.Div(id="tour-dots", style={
             "display": "flex", "gap": "6px", "marginBottom": "20px",
         }),
-        # Titre
         html.Div(id="tour-title", style={
             "color": "#E6EDF3", "fontFamily": SERIF,
             "fontWeight": "300", "fontSize": "22px", "marginBottom": "12px",
         }),
-        # Texte
         html.Div(id="tour-text", style={
             "color": "#8B949E", "fontFamily": MONO,
             "fontSize": "11px", "lineHeight": "1.9", "marginBottom": "28px",
         }),
-        # Boutons
         html.Div([
             html.Button("Passer", id="tour-skip", n_clicks=0, style={
                 "background": "none", "border": "none",
@@ -253,24 +256,30 @@ def toggle_about_panel(o, c, b):
     return {**panel_base, "transform": "translateX(100%)"}, bd_hidden
 
 
-# ── Tour : déclenchement auto à l'ouverture ───────────────────
+# ── Tour : déclenchement — home uniquement, une seule fois ────
 @callback(
     Output("tour-store", "data"),
     Input("url", "pathname"),
     State("tour-store", "data"),
 )
 def start_tour(pathname, tour_data):
-    # Lance le tour uniquement sur la home et si pas déjà actif
-    if pathname in (None, "/") and not (tour_data or {}).get("active"):
-        return {"step": 0, "active": True}
-    if tour_data and tour_data.get("active"):
-        return tour_data
-    return {"step": 0, "active": True}
+    td = tour_data or {}
+    # Sur une page secteur → éteindre le tour si actif, ne pas relancer
+    if pathname and pathname != "/":
+        if td.get("active"):
+            return {**td, "active": False}
+        return no_update
+    # Sur la home → lancer le tour uniquement si pas encore vu
+    if pathname in (None, "/"):
+        if td.get("visited"):
+            return no_update  # déjà vu → on ne relance pas
+        return {"step": 0, "active": True, "visited": False}
+    return no_update
 
 
 # ── Tour : navigation (next / prev / skip) ────────────────────
 @callback(
-    Output("tour-store",  "data", allow_duplicate=True),
+    Output("tour-store", "data", allow_duplicate=True),
     Input("tour-next",  "n_clicks"),
     Input("tour-prev",  "n_clicks"),
     Input("tour-skip",  "n_clicks"),
@@ -285,12 +294,12 @@ def navigate_tour(next_c, prev_c, skip_c, tour_data):
     if triggered == "tour-next":
         new_step = step + 1
         if new_step >= len(TOUR_STEPS):
-            return {"step": 0, "active": False}
-        return {"step": new_step, "active": True}
+            return {"step": 0, "active": False, "visited": True}
+        return {"step": new_step, "active": True, "visited": False}
     elif triggered == "tour-prev":
-        return {"step": max(0, step - 1), "active": True}
+        return {"step": max(0, step - 1), "active": True, "visited": False}
     elif triggered == "tour-skip":
-        return {"step": 0, "active": False}
+        return {"step": 0, "active": False, "visited": True}
     return no_update
 
 
