@@ -49,7 +49,7 @@ TOUR_STEPS = [
     },
     {
         "title": "Infobulles explicatives ？",
-        "text": "Sur chaque graphique, un bouton ？ affiche une explication détaillée : méthodologie, indicateurs clés et lecture des données.",
+        "text": "Sur chaque graphique, un bouton ⓘ affiche une explication détaillée : méthodologie, indicateurs clés et lecture des données.",
         "btn_next": "Suivant →",
         "show_prev": True,
     },
