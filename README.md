@@ -26,6 +26,7 @@ L'objectif : rendre lisibles et exploitables des données financières complexes
 | Benchmark | Positionnement relatif des banques |
 | Carte | Répartition géographique des agences |
 | Structure | Structure bilancielle agrégée du secteur |
+| Positionnement Marché | Simulation du positionnement d'une nouvelle banque dans le secteur |
 
 **Source :** BCEAO · 24 banques · 2015 – 2022 · 168 observations · 60 variables
 
