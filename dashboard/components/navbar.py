@@ -14,6 +14,7 @@ PAGE_LABELS = {
     "/bancaire/benchmark":   "Benchmark",
     "/bancaire/carte":       "Carte",
     "/bancaire/structure":   "Structure",
+    "/bancaire/prediction": "Positionnement Marché",
     # Énergie
     "/energie":              "Vue Globale",
     "/energie/temporelle":   "Analyse Temporelle",

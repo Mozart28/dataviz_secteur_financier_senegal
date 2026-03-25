@@ -17,6 +17,7 @@ import sectors.bancaire.pages.ratios.callbacks
 import sectors.bancaire.pages.benchmark.callbacks
 import sectors.bancaire.pages.carte.callbacks
 import sectors.bancaire.pages.structure.callbacks
+import sectors.bancaire.pages.prediction.callbacks
 import sectors.assurance.pages.vue_portefeuille.callbacks
 import sectors.assurance.pages.sinistres.callbacks
 import sectors.assurance.pages.profil_assure.callbacks
@@ -173,6 +174,7 @@ def route(path):
         from sectors.bancaire.pages.benchmark.layout   import get_layout as bm
         from sectors.bancaire.pages.carte.layout       import get_layout as ct
         from sectors.bancaire.pages.structure.layout   import get_layout as st
+        from sectors.bancaire.pages.prediction.layout import get_layout as pred
         nav = sidebar()
         if   path == "/bancaire":             page = vm()
         elif path == "/bancaire/banque":      page = pb()
@@ -181,6 +183,7 @@ def route(path):
         elif path == "/bancaire/benchmark":   page = bm()
         elif path == "/bancaire/carte":       page = ct()
         elif path == "/bancaire/structure":   page = st()
+        elif path == "/bancaire/prediction":  page = pred()
         else:                                 page = vm()
         return nav, page
 
